@@ -1,31 +1,28 @@
-import {
-	BrowserRouter as Router,
-	Route,
-	Routes,
-} from 'react-router-dom';
-import { Layout } from './layout/Layout';
-import { HomePage } from './pages/HomePage/HomePage';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Layout } from "./layout/Layout";
+import { HomePage } from "./pages/HomePage/HomePage";
+import "aos/dist/aos.css";
 const App = () => {
-	return (
-		<Router>
-			<AppContent/>
-		</Router>
-	);
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
 };
 
 const AppContent = () => {
-	return (
-		<div className="app-container select-none bg-white">
-			<div className="content-container select-none">
-				<Routes>
-					<Route path="/" element={<Layout />}>
-						<Route path="/" element={<HomePage />} />
-						<Route path="/home" element={<HomePage />} />
-					</Route>
-				</Routes>
-			</div>
-		</div>
-	);
+  return (
+    <div className="app-container select-none bg-white">
+      <div className="content-container select-none">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+          </Route>
+        </Routes>
+      </div>
+    </div>
+  );
 };
 
 export default App;
