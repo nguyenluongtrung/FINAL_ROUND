@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = '/finalround/api/discussions/';
+const API_URL = '/finalround/api/discussions';
 
 // Get all promotions
 const getAllDiscussions = async () => {
@@ -34,13 +34,13 @@ const deleteDiscussion = async (promotionId, token) => {
 
 // Create promotion
 const createDiscussion = async (promotionData, token) => {
-	const config = {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	};
+	// const config = {
+	// 	headers: {
+	// 		Authorization: `Bearer ${token}`,
+	// 	},
+	// };
 
-	const response = await axios.post(API_URL, promotionData, config);
+	const response = await axios.post(API_URL, promotionData);
 	console.log(response.data);
 	return response.data.data.discussion;
 };
