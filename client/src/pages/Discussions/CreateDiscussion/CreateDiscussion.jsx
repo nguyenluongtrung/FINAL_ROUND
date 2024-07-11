@@ -14,6 +14,7 @@ import {
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { errorStyle, successStyle } from '../../../utils/toast-customize';
 import toast from 'react-hot-toast';
+import { getAccountInformation } from '../../../features/auth/authSlice';
 
 export const CreateDiscussion = ({fetchAllDiscussions}) => {
 	const fileRef = useRef(null);
@@ -21,6 +22,7 @@ export const CreateDiscussion = ({fetchAllDiscussions}) => {
 	const [filePerc, setFilePerc] = useState(0);
 	const [fileUploadError, setFileUploadError] = useState(false);
 	const [imageUrl, setImageUrl] = useState('');
+	const [account, setAccount] = useState('')
 	const dispatch = useDispatch();
 	const options = [
 		{ value: 'FPT', label: 'FPT' },
@@ -44,6 +46,15 @@ export const CreateDiscussion = ({fetchAllDiscussions}) => {
 			handleFileUpload(file);
 		}
 	}, [file]);
+
+	const fetchMyAccount = async () => {
+		const response = await dispatch(getAccountInformation())
+		setAccount(response.payload)
+	}
+
+	useEffect(() => {
+		fetchMyAccount()
+	}, [])
 
 	const handleFileUpload = (file) => {
 		const storage = getStorage(app);
@@ -73,7 +84,7 @@ export const CreateDiscussion = ({fetchAllDiscussions}) => {
 		let topics = [];
 		selectedOptions.forEach((option) => topics.push(option.value));
 		console.log(imageUrl)
-		const result = await dispatch(createDiscussion({ ...data, topics, image: imageUrl }));
+		const result = await dispatch(createDiscussion({ ...data, topics, image: imageUrl, accountId: account._id }));
         if (result.type.endsWith('fulfilled')) {
 			toast.success('Tạo bài thảo luận thành công', successStyle);
 		} else if (result?.error?.message === 'Rejected') {
@@ -108,10 +119,10 @@ export const CreateDiscussion = ({fetchAllDiscussions}) => {
 				/>
 				<div className='flex gap-5 items-center'>
 				<button
-					className={`rounded-md rounded-customized-gray p-1 !w-36 bg-primary border-0 text-white hover:cursor-pointer mb-3`}
+					className={`rounded-md rounded-customized-gray p-1 !w-36 bg-gray opacity-50 text-center border-0 text-white hover:cursor-pointer mb-3`}
 					onClick={(e) => {e.preventDefault(); fileRef.current.click()}}
 				>
-					<div className='flex gap-3 items-center p-1.5 '><MdOutlineCloudUpload size={20}/><p>Chọn ảnh</p></div>
+					<div className='flex gap-3 items-center justify-center p-1.5 '><MdOutlineCloudUpload size={20}/><p>Chọn ảnh</p></div>
 				</button>
 				<input
 					type="file"

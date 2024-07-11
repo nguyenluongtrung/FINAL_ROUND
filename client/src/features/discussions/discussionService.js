@@ -48,6 +48,34 @@ const createDiscussion = async (promotionData, token) => {
 	console.log(response.data);
 	return response.data.data.discussion;
 };
+const createComment = async (content, accountId, discussionId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const response = await axios.post(
+		API_URL + `/comments/${discussionId}`,
+		{ content, accountId },
+		config
+	);
+	console.log(response.data);
+	return response.data.data.comments;
+};
+const getAllComments = async (discussionId, token) => {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
+
+	const response = await axios.get(
+		API_URL + `/comments/${discussionId}`,
+		config
+	);
+	return response.data.data.comments;
+};
 
 // Update promotion
 const updateDiscussion = async (token, promotionData, promotionId) => {
@@ -82,5 +110,7 @@ const promotionService = {
 	getAllDiscussionsByTopic,
 	reactHeart,
 	getAllDiscussionsByPopular,
+	createComment,
+	getAllComments,
 };
 export default promotionService;

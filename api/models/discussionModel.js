@@ -31,6 +31,18 @@ const discussionSchema = new mongoose.Schema({
 			ref: 'Account',
 		},
 	],
+	comments: [
+		{
+			accountId: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Account',
+			},
+			content: {
+				type: String,
+				default: '',
+			},
+		},
+	],
 	createdAt: {
 		type: Date,
 		default: Date.now,

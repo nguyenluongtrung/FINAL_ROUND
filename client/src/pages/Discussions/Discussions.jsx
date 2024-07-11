@@ -1,7 +1,7 @@
 import { GiArtificialIntelligence } from 'react-icons/gi';
 import { SiNordicsemiconductor } from 'react-icons/si';
 import logoFPT from '../../../public/img/logo-FPT.png';
-import { FaUser } from 'react-icons/fa';
+import { FaHeart, FaUser } from 'react-icons/fa';
 import { FaPenSquare } from 'react-icons/fa';
 import { IoIosAdd } from 'react-icons/io';
 import { MdFiberNew } from 'react-icons/md';
@@ -20,6 +20,7 @@ import { Spinner } from './../../components/Spinner/Spinner';
 import { DiscussionDetail } from './DiscussionDetail/DiscussionDetail';
 import avatar from './../../assets/male3-512.webp';
 import { getAllAccounts } from '../../features/auth/authSlice';
+import { formatDate } from '../../utils/format';
 
 export const Discussions = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
@@ -53,11 +54,11 @@ export const Discussions = () => {
 		setAccounts(response.payload);
 	};
 
-    function getUsername(email) {
-        const parts = email.split('@');
-      
-        return parts[0];
-      }
+	function getUsername(email) {
+		const parts = email.split('@');
+
+		return parts[0];
+	}
 
 	useEffect(() => {
 		fetchAllTopDiscussions();
@@ -146,153 +147,160 @@ export const Discussions = () => {
 						</button>
 					</div>
 				</div>
-                <div className="p-4">
-				{!chosenDiscussion && isCreateDiscussionOpen && (
-					<CreateDiscussion fetchAllDiscussions={fetchAllDiscussions} />
-				)}
-				{chosenDiscussion && (
-					<DiscussionDetail
-						chosenDiscussion={chosenDiscussion}
-						fetchAllDiscussions={fetchAllDiscussions}
-						setChosenDiscussion={setChosenDiscussion}
-					/>
-				)}
-				{!chosenDiscussion && (
-					<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5 w-56 fea-item">
-						Bài thảo luận mới nhất
-					</button>
-				)}
-				{!chosenDiscussion &&
-					discussions?.map((discussion) => {
-						return (
-							<>
-								<div
-									className="pt-4 mt-4 cursor-pointer fea-item"
-									onClick={() => {
-										setChosenDiscussion(discussion);
-										setIsViewDetailDiscussionOpen(true);
-									}}
-								>
+				<div className="p-4">
+					{!chosenDiscussion && isCreateDiscussionOpen && (
+						<CreateDiscussion fetchAllDiscussions={fetchAllDiscussions} />
+					)}
+					{chosenDiscussion && (
+						<DiscussionDetail
+							chosenDiscussion={chosenDiscussion}
+							fetchAllDiscussions={fetchAllDiscussions}
+							setChosenDiscussion={setChosenDiscussion}
+						/>
+					)}
+					{!chosenDiscussion && (
+						<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5 w-56 fea-item">
+							Bài thảo luận mới nhất
+						</button>
+					)}
+					{!chosenDiscussion &&
+						discussions?.map((discussion) => {
+							return (
+								<>
 									<div
-										className={`relative flex flex-col sm:flex-row ${
-											isDarkMode ? 'bg-dark' : 'bg-light'
-										} rounded-lg shadow-lg p-4 mb-2`}
+										className="pt-4 mt-4 cursor-pointer fea-item"
+										onClick={() => {
+											setChosenDiscussion(discussion);
+											setIsViewDetailDiscussionOpen(true);
+										}}
 									>
-										<img
-											src={discussion.image}
-											alt="mô tả post"
-											className="w-full sm:w-40 h-40 mr-3 border-none object-cover rounded-lg mb-4 sm:mb-0"
-										/>
-										<div className="flex-1">
-											<div className="flex justify-between mb-2">
-												<strong className="text-base mr-2 mt-2">
-													{discussion?.title}
-												</strong>
-												<div className="flex flex-wrap gap-2 mt-2 text-sm text-gray-600 mb-4">
-													{discussion.topics.map((topic) => {
-														return (
-															<span className="bg-primary px-4 py-1 rounded-md text-white">
-																{topic}
-															</span>
-														);
-													})}
+										<div
+											className={`relative flex flex-col sm:flex-row ${
+												isDarkMode ? 'bg-dark' : 'bg-light'
+											} rounded-lg shadow-lg p-4 mb-2`}
+										>
+											<img
+												src={discussion.image}
+												alt="mô tả post"
+												className="w-full sm:w-40 h-40 mr-3 border-none object-cover rounded-lg mb-4 sm:mb-0"
+											/>
+											<div className="flex-1">
+												<div className="flex justify-between mb-2">
+													<strong className="text-base mr-2 mt-2">
+														{discussion?.title}
+													</strong>
+													<div className="flex flex-wrap gap-2 mt-2 text-sm text-gray-600 mb-4">
+														{discussion.topics.map((topic) => {
+															return (
+																<span className="bg-primary px-4 py-1 rounded-md text-white">
+																	{topic}
+																</span>
+															);
+														})}
+													</div>
 												</div>
-											</div>
 
-											<div className="flex items-center mb-2">
-												<img
-													src={avatar}
-													alt=""
-													className="w-8 h-8 rounded-full mr-2"
-												/>
-												<strong>Pavel Gvay</strong>
-												<p className="text-sm text-gray ml-2">3 weeks ago</p>
-											</div>
-											<div className="flex gap-10 text-sm">
-												<span>651,324 Views</span>
-												<span>36,654 Likes</span>
-												<span>56 comments</span>
+												<div className="flex items-center mb-2">
+													<img
+														src={avatar}
+														alt=""
+														className="w-8 h-8 rounded-full mr-2"
+													/>
+													<p className="font-semibold">
+														{discussion?.accountId?.name}
+													</p>
+													<p className="text-sm text-gray ml-2">
+														{formatDate(discussion.createdAt)}
+													</p>
+												</div>
+												<div className="flex gap-10 text-sm mt-3">
+													<span>{discussion?.loveCount} yêu thích</span>
+													<span>{discussion?.comments?.length} bình luận</span>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</>
-						);
-					})}
-			</div>
-			<div className="p-4">
-				<div
-					className={`bg-white ${
-						isDarkMode ? 'bg-dark' : 'bg-light'
-					} p-4 mt-4 rounded-lg shadow-md`}
-				>
-					<strong className="text-base font-bold block mb-4">
-						Thảo luận hàng đầu
-					</strong>
-					{topDiscussions?.map((discussion) => {
-						return (
-							<div className="p-2 rounded-lg mb-3 border border-light_gray hover:bg-light_gray cursor-pointer">
-								<p className="text-base font-semibold mb-3">
-									{discussion.title}
-								</p>
-								<div>
-									{discussion.topics.map((topic) => {
-										return (
-											<span className="bg-primary mr-3 px-4 py-1 rounded-md text-white">
-												{topic}
-											</span>
-										);
-									})}
-
-									<p className=" mt-3 text-sm flex items-center gap-1">
-										{discussion.loveCount} <FaRegHeart size={10} />
-									</p>
-								</div>
-							</div>
-						);
-					})}
+								</>
+							);
+						})}
 				</div>
-				<div
-					className={`bg-white ${
-						isDarkMode ? 'bg-dark' : 'bg-light'
-					} p-4 mt-4 rounded-lg shadow-md`}
-				>
-					<div className="flex justify-between gap-10">
+				<div className="p-4">
+					<div
+						className={`bg-white ${
+							isDarkMode ? 'bg-dark' : 'bg-light'
+						} p-4 mt-4 rounded-lg shadow-md`}
+					>
 						<strong className="text-base font-bold block mb-4">
-							Lượt truy cập người dùng
+							Thảo luận hàng đầu
 						</strong>
-						<p className="text-blue font-semibold hover:text-blue-900 cursor-pointer">
-							Tất cả
-						</p>
-					</div>
-					<div className="mb-4">
-						{accounts?.map((acc) => {
+						{topDiscussions?.map((discussion) => {
 							return (
-								<div className="flex items-center mb-4">
-									<img
-										alt="avatar"
-										src={acc.avatar}
-										className="rounded-full border w-8 h-8"
-									/>
-									<div className="ml-4">
-										<p className="block font-semibold">{acc.name}</p>
-										<p className="text-gray">#{getUsername(acc.email)}</p>
-									</div>
-									<div className="ml-auto flex items-center rounded-full border border-blue text-blue hover:bg-blue hover:text-white">
-										<IoIosAdd className=" text-2xl ml-1" />
-										<button className=" text-sm font-semibold py-1 px-2">
-											Theo dõi
-										</button>
+								<div className="p-2 rounded-lg mb-3 border border-light_gray hover:bg-light_gray cursor-pointer">
+									<p className="text-base font-semibold mb-3">
+										{discussion.title}
+									</p>
+									<div>
+										{discussion.topics.map((topic) => {
+											return (
+												<span className="bg-primary mr-3 px-4 py-1 rounded-md text-white">
+													{topic}
+												</span>
+											);
+										})}
+
+										<div className="flex justify-between items-center">
+											<p className=" mt-3 text-sm flex items-center gap-1">
+												{discussion.loveCount}{' '}
+												<FaHeart className="mt-1" size={15} color="red" />
+											</p>
+											<p className="text-sm text-gray mt-2">
+												{formatDate(discussion.createdAt)}
+											</p>
+										</div>
 									</div>
 								</div>
 							);
 						})}
 					</div>
+					<div
+						className={`bg-white ${
+							isDarkMode ? 'bg-dark' : 'bg-light'
+						} p-4 mt-4 rounded-lg shadow-md`}
+					>
+						<div className="flex justify-between gap-10">
+							<strong className="text-base font-bold block mb-4">
+								Lượt truy cập người dùng
+							</strong>
+							<p className="text-blue font-semibold hover:text-blue-900 cursor-pointer">
+								Tất cả
+							</p>
+						</div>
+						<div className="mb-4">
+							{accounts?.map((acc) => {
+								return (
+									<div className="flex items-center mb-4">
+										<img
+											alt="avatar"
+											src={acc.avatar}
+											className="rounded-full border w-8 h-8"
+										/>
+										<div className="ml-4">
+											<p className="block font-semibold">{acc.name}</p>
+											<p className="text-gray">#{getUsername(acc.email)}</p>
+										</div>
+										<div className="ml-auto flex items-center rounded-full border border-blue text-blue hover:bg-blue hover:text-white">
+											<IoIosAdd className=" text-2xl ml-1" />
+											<button className=" text-sm font-semibold py-1 px-2">
+												Theo dõi
+											</button>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
 				</div>
 			</div>
-			</div>
-
-			
 		</div>
 	);
 };

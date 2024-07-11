@@ -19,7 +19,9 @@ const createDiscussion = asyncHandler(async (req, res) => {
 const getAllDiscussions = asyncHandler(async (req, res) => {
 	const { topic } = req.query;
 	let discussions;
-	discussions = await Discussion.find({});
+	discussions = await Discussion.find({})
+		.populate('accountId')
+		.populate('comments.accountId');
 	if (topic) {
 		let updatedDiscussions = discussions.filter((discussion) =>
 			discussion.topics.includes(topic)
@@ -53,7 +55,9 @@ const getAllDiscussionsByPopular = asyncHandler(async (req, res) => {
 
 const getDiscussionById = asyncHandler(async (req, res) => {
 	try {
-		const discussion = await Discussion.findById(req.params.discussionId);
+		const discussion = await Discussion.findById(
+			req.params.discussionId
+		).populate('comments.accountId');
 		if (!discussion) {
 			return res.status(404).json({
 				success: false,
@@ -154,6 +158,51 @@ const reactHeart = asyncHandler(async (req, res) => {
 	}
 });
 
+const getAllComments = asyncHandler(async (req, res) => {
+	try {
+		const findDiscussion = await Discussion.findById(req.params.discussionId);
+
+		const comments = findDiscussion.comments;
+		res.status(200).json({
+			status: 'success',
+			data: {
+				comments,
+			},
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			error: error.message,
+		});
+	}
+});
+
+const createComment = asyncHandler(async (req, res) => {
+	try {
+		const findDiscussion = await Discussion.findById(req.params.discussionId);
+
+		findDiscussion.comments.push({
+			accountId: req.body.accountId,
+			content: req.body.content,
+		});
+		const discussion = await findDiscussion.save();
+		let result = await Discussion.findById(discussion._id).populate(
+			'comments.accountId'
+		);
+		res.status(200).json({
+			status: 'success',
+			data: {
+				comments: result.comments,
+			},
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			error: error.message,
+		});
+	}
+});
+
 module.exports = {
 	createDiscussion,
 	getAllDiscussions,
@@ -162,4 +211,6 @@ module.exports = {
 	getDiscussionById,
 	reactHeart,
 	getAllDiscussionsByPopular,
+	createComment,
+	getAllComments,
 };

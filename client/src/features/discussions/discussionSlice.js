@@ -57,6 +57,52 @@ export const getDiscussion = createAsyncThunk(
 	}
 );
 
+export const createComment = createAsyncThunk(
+	'auth/createComment',
+	async ({ content, accountId, discussionId }, thunkAPI) => {
+		try {
+			console.log({ content, accountId, discussionId });
+			const storedAccount = JSON.parse(localStorage.getItem('account'));
+			const token = storedAccount.data.token;
+			return await discussionService.createComment(
+				content,
+				accountId,
+				discussionId,
+				token
+			);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+export const getAllComments = createAsyncThunk(
+	'auth/getAllComments',
+	async (discussionId, thunkAPI) => {
+		try {
+			const storedAccount = JSON.parse(localStorage.getItem('account'));
+			const token = storedAccount.data.token;
+			return await discussionService.getAllComments(discussionId, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 export const getAllDiscussionsByTopic = createAsyncThunk(
 	'auth/getAllDiscussionsByTopic',
 	async (topic, thunkAPI) => {
@@ -192,6 +238,18 @@ export const authSlice = createSlice({
 				state.message = action.payload;
 				state.discussions = [];
 			})
+			.addCase(getAllComments.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllComments.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+			})
+			.addCase(getAllComments.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
 			.addCase(getAllDiscussionsByPopular.pending, (state) => {
 				state.isLoading = true;
 			})
@@ -243,6 +301,19 @@ export const authSlice = createSlice({
 				state.discussions.push(action.payload);
 			})
 			.addCase(createDiscussion.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(createComment.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(createComment.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				// state.discussions.push(action.payload);
+			})
+			.addCase(createComment.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
