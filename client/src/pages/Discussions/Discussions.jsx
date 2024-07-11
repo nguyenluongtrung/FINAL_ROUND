@@ -13,9 +13,10 @@ import './Discussions.css';
 import { useEffect, useState } from 'react';
 import { CreateDiscussion } from './CreateDiscussion/CreateDiscussion';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDiscussions } from '../../features/discussions/discussionSlice';
+import { getAllDiscussions, getAllDiscussionsByTopic } from '../../features/discussions/discussionSlice';
 import { Spinner } from './../../components/Spinner/Spinner';
 import { DiscussionDetail } from './DiscussionDetail/DiscussionDetail';
+import avatar from './../../assets/male3-512.webp'
 
 export const Discussions = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
@@ -36,6 +37,11 @@ export const Discussions = () => {
 	useEffect(() => {
 		fetchAllDiscussions();
 	}, []);
+
+    const handleGetDiscussionsByTopic = async (topic) => {
+        const response = await dispatch(getAllDiscussionsByTopic(topic));
+		setDiscussions(response.payload);
+    }
 
 	if (isLoading) {
 		return <Spinner />;
@@ -75,23 +81,19 @@ export const Discussions = () => {
 							isDarkMode ? 'bg-dark' : 'bg-light'
 						} mt-4 p-6 rounded-lg shadow-lg`}
 					>
-						<h2 className="text-base font-bold mb-6">Chủ đề phổ biến</h2>
+						<h2 className="text-base font-semibold mb-3">Chủ đề phổ biến</h2>
 						<div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
+							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer" onClick={() => handleGetDiscussionsByTopic('AI')}>
 								<GiArtificialIntelligence className="mr-2 text-blue-500 w-8 h-8" />
-								<strong>Trí thông minh nhân tạo (AI)</strong>
+								<p>Trí thông minh nhân tạo (AI)</p>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
+							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer" onClick={() => handleGetDiscussionsByTopic('Bán dẫn')}>
 								<SiNordicsemiconductor className="mr-2 text-green-500 w-8 h-8" />
-								<strong>Bán dẫn</strong>
+								<p>Bán dẫn</p>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
+							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer" onClick={() => handleGetDiscussionsByTopic('FPT')}>
 								<img src={logoFPT} className="w-8 h-8 mr-2" alt="FPT Logo" />
-								<strong>Đại học FPT</strong>
-							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
-								<CiCircleMore className="mr-2 w-8 h-8 text-purple-500" />
-								<strong>More</strong>
+								<p>Đại học FPT</p>
 							</div>
 							<button
 								className="flex items-center w-full justify-center text-sm
@@ -106,13 +108,15 @@ export const Discussions = () => {
 				</div>
 
 				<div className="p-4">
-					{isCreateDiscussionOpen && <CreateDiscussion />}
+					{!chosenDiscussion && isCreateDiscussionOpen && <CreateDiscussion fetchAllDiscussions={fetchAllDiscussions}/>}
 					{chosenDiscussion && (
-						<DiscussionDetail chosenDiscussion={chosenDiscussion} />
+						<DiscussionDetail chosenDiscussion={chosenDiscussion} fetchAllDiscussions={fetchAllDiscussions} setChosenDiscussion={setChosenDiscussion}/>
 					)}
-					<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5">
-						Bài thảo luận mới nhất
-					</button>
+					{!chosenDiscussion && (
+						<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5">
+							Bài thảo luận mới nhất
+						</button>
+					)}
 					{!chosenDiscussion &&
 						discussions?.map((discussion) => {
 							return (
@@ -130,7 +134,7 @@ export const Discussions = () => {
 											} rounded-lg shadow-lg p-4 mb-2`}
 										>
 											<img
-												src={logoFPT}
+												src={discussion.image}
 												alt="mô tả post"
 												className="w-full sm:w-40 h-40 mr-3 border-none object-cover rounded-lg mb-4 sm:mb-0"
 											/>
@@ -152,7 +156,7 @@ export const Discussions = () => {
 
 												<div className="flex items-center mb-2">
 													<img
-														src=""
+														src={avatar}
 														alt=""
 														className="w-8 h-8 rounded-full mr-2"
 													/>
@@ -182,22 +186,26 @@ export const Discussions = () => {
 						<strong className="text-base font-bold block mb-4">
 							Thảo luận hàng đầu
 						</strong>
-						<div className="flex justify-between items-center p-2 rounded-lg mb-3 border">
-							<div>
-								<p className=" text-sm">Business & finance</p>
-								<strong className="text-base  ">Telegram</strong>
-								<p className=" text-sm ">936K posts</p>
-							</div>
-							<BsThreeDots />
-						</div>
-						<div className="flex justify-between items-center p-2 rounded-lg mb-3 border">
-							<div>
-								<p className=" text-sm">Business & finance</p>
-								<strong className="text-base">Telegram</strong>
-								<p className=" text-sm ">936K posts</p>
-							</div>
-							<BsThreeDots />
-						</div>
+						{discussions?.map((discussion) => {
+							return (
+								<div className="p-2 rounded-lg mb-3 shadow-lg">
+									<p className="text-base font-semibold mb-3">
+										{discussion.title}
+									</p>
+									<div>
+										{discussion.topics.map((topic) => {
+											return (
+												<span className="bg-primary mr-3 px-4 py-1 rounded-md text-white">
+													{topic}
+												</span>
+											);
+										})}
+
+										<p className=" mt-3 text-sm flex items-center gap-1">{discussion.loveCount} <FaRegHeart size={10} /></p>
+									</div>
+								</div>
+							);
+						})}
 					</div>
 					<div
 						className={`bg-white ${
@@ -215,7 +223,7 @@ export const Discussions = () => {
 						<div className="flex items-center space-x-4 mb-4">
 							<img
 								alt="avatar"
-								src=""
+								src={avatar}
 								className="rounded-full border w-8 h-8"
 							/>
 							<div>
@@ -225,14 +233,14 @@ export const Discussions = () => {
 							<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
 								<IoIosAdd className="text-blue-400 text-2xl ml-1" />
 								<button className="text-blue-400 text-sm font-semibold py-1 px-2">
-									Follow
+                                Theo dõi
 								</button>
 							</div>
 						</div>
 						<div className="flex items-center space-x-4 mb-4">
 							<img
 								alt="avatar"
-								src=""
+								src={avatar}
 								className="rounded-full border w-8 h-8"
 							/>
 							<div>
@@ -242,7 +250,7 @@ export const Discussions = () => {
 							<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
 								<IoIosAdd className="text-blue-400 text-2xl ml-1" />
 								<button className="text-blue-400 text-sm font-semibold py-1 px-2">
-									Follow
+									Theo dõi
 								</button>
 							</div>
 						</div>

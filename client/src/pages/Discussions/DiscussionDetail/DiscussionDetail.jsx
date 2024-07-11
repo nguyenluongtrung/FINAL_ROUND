@@ -1,52 +1,45 @@
-import { useState } from 'react';
-import { MdEdit } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { formatDate } from '../../../utils/format';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import {
+	reactHeart,
+} from '../../../features/discussions/discussionSlice';
 
-export const DiscussionDetail = ({ chosenDiscussion }) => {
-	const [isEditMode, setIsEditMode] = useState(false);
+export const DiscussionDetail = ({ chosenDiscussion, setChosenDiscussion }) => {
+	const dispatch = useDispatch();
+
+	const handleReactHeart = async (discussionId) => {
+		const response = await dispatch(
+			reactHeart({ discussionId, accountId: '668e941547a6ebfd7ca1f4cf' })
+		);
+		setChosenDiscussion(response.payload);
+	};
 
 	return (
 		<>
-			<form>
-				<div className="px-8 py-10 relative bg-white rounded-md">
-					<MdEdit
-						className="text-gray absolute right-5 top-3"
-						size={20}
-						onClick={() => setIsEditMode(true)}
+			<div className="p-8 relative bg-white rounded-md">
+				{chosenDiscussion?.loveAccounts?.includes('668e941547a6ebfd7ca1f4cf') ? (
+					<FaHeart
+						className="absolute right-8 hover:cursor-pointer"
+						size={16}
+						color="red"
+						onClick={() => handleReactHeart(chosenDiscussion._id)}
 					/>
-					{isEditMode ? (
-						<input
-							type="text"
-							className="w-full py-2 rounded-md focus:outline-primary custom-input mb-5 pl-3"
-							placeholder="Tiêu đề"
-							defaultValue={chosenDiscussion.title}
-							// {...register('title')}
-						/>
-					) : (
-						<input
-							type="text"
-							className="w-full py-2 rounded-md focus:outline-primary custom-input mb-5 pl-3"
-							placeholder="Tiêu đề"
-							defaultValue={chosenDiscussion.title}
-							// {...register('title')}
-						/>
-					)}
+				) : (
+					<FaRegHeart
+						className="absolute right-8 hover:cursor-pointer"
+						size={16}
+						onClick={() => handleReactHeart(chosenDiscussion._id)}
+					/>
+				)}
 
-					<textarea
-						className="w-full py-2 rounded-md focus:outline-primary custom-input mb-5 pl-3"
-						rows={5}
-						placeholder="Nội dung"
-						defaultValue={chosenDiscussion.description}
-						// {...register('description')}
-					></textarea>
-                    <img src={chosenDiscussion?.image} className='w-full h-80 mb-5'/>
-					<button
-						type="submit"
-						className="bg-primary text-white rounded-xl px-5 py-2 w-full"
-					>
-						Chỉnh sửa thảo luận
-					</button>
-				</div>
-			</form>
+				<p className="font-semibold text-xl mb-1">{chosenDiscussion.title}</p>
+				<p className="mb-5 text-gray italic text-xs">
+					Ngày đăng: {formatDate(chosenDiscussion.createdAt)}
+				</p>
+				<p className="text-justify mb-5">{chosenDiscussion.description}</p>
+				<img src={chosenDiscussion?.image} className="w-full h-80 mb-5" />
+			</div>
 			<form className="px-8 py-10 relative bg-white rounded-md mt-10">
 				<div className="flex gap-3">
 					<input

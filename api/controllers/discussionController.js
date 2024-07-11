@@ -17,14 +17,27 @@ const createDiscussion = asyncHandler(async (req, res) => {
 });
 
 const getAllDiscussions = asyncHandler(async (req, res) => {
-	const discussions = await Discussion.find({});
-
-	res.status(200).json({
-		status: 'success',
-		data: {
-			discussions,
-		},
-	});
+	const { topic } = req.query;
+	let discussions;
+	discussions = await Discussion.find({});
+	if (topic) {
+		let updatedDiscussions = discussions.filter((discussion) =>
+			discussion.topics.includes(topic)
+		);
+		res.status(200).json({
+			status: 'success',
+			data: {
+				discussions: updatedDiscussions,
+			},
+		});
+	} else {
+		res.status(200).json({
+			status: 'success',
+			data: {
+				discussions,
+			},
+		});
+	}
 });
 
 const getDiscussionById = asyncHandler(async (req, res) => {
@@ -100,10 +113,41 @@ const deleteDiscussion = asyncHandler(async (req, res) => {
 		});
 	}
 });
+
+const reactHeart = asyncHandler(async (req, res) => {
+	try {
+		const discussion = await Discussion.findById(req.params.discussionId);
+		if (
+			discussion.loveAccounts.find((account) => account == req.params.accountId)
+		) {
+			discussion.loveCount = Number(discussion.loveCount) - 1;
+			discussion.loveAccounts = discussion.loveAccounts.filter(
+				(acc) => String(acc) !== String(req.params.accountId)
+			);
+		} else {
+			discussion.loveCount = Number(discussion.loveCount) + 1;
+			discussion.loveAccounts.push(req.params.accountId);
+		}
+		const newDiscussion = await discussion.save();
+		res.status(200).json({
+			status: 'success',
+			data: {
+				discussion: newDiscussion,
+			},
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			error: error.message,
+		});
+	}
+});
+
 module.exports = {
 	createDiscussion,
 	getAllDiscussions,
 	updateDiscussion,
 	deleteDiscussion,
 	getDiscussionById,
+	reactHeart,
 };

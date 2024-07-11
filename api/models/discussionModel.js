@@ -21,21 +21,11 @@ const discussionSchema = new mongoose.Schema({
 			type: String,
 		},
 	],
-	likeCount: {
+	loveCount: {
 		type: Number,
 		default: 0,
 	},
-	dislikeCount: {
-		type: Number,
-		default: 0,
-	},
-	likeAccounts: [
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Account',
-		},
-	],
-	dislikeAccounts: [
+	loveAccounts: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Account',

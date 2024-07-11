@@ -22,6 +22,42 @@ export const getAllDiscussions = createAsyncThunk(
 	}
 );
 
+export const getDiscussion = createAsyncThunk(
+	'auth/getDiscussion',
+	async (discussionId, thunkAPI) => {
+		try {
+			return await discussionService.getDiscussion(discussionId);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
+export const getAllDiscussionsByTopic = createAsyncThunk(
+	'auth/getAllDiscussionsByTopic',
+	async (topic, thunkAPI) => {
+		try {
+			return await discussionService.getAllDiscussionsByTopic(topic);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 export const createDiscussion = createAsyncThunk(
 	'auth/createDiscussion',
 	async (discussionData, thunkAPI) => {
@@ -85,8 +121,27 @@ export const updateDiscussion = createAsyncThunk(
 	}
 );
 
+export const reactHeart = createAsyncThunk(
+	'auth/reactHeart',
+	async ({ discussionId, accountId }, thunkAPI) => {
+		try {
+			return await discussionService.reactHeart(discussionId, accountId);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+
 const initialState = {
 	discussions: [],
+	discussion: null,
 	isError: false,
 	isSuccess: false,
 	isLoading: false,
@@ -115,6 +170,34 @@ export const authSlice = createSlice({
 				state.discussions = action.payload;
 			})
 			.addCase(getAllDiscussions.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+				state.discussions = [];
+			})
+			.addCase(getDiscussion.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getDiscussion.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussion = action.payload;
+			})
+			.addCase(getDiscussion.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+				state.discussions = [];
+			})
+			.addCase(getAllDiscussionsByTopic.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllDiscussionsByTopic.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions = action.payload;
+			})
+			.addCase(getAllDiscussionsByTopic.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;
@@ -161,6 +244,23 @@ export const authSlice = createSlice({
 				] = action.payload;
 			})
 			.addCase(updateDiscussion.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(reactHeart.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(reactHeart.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions[
+					state.discussions.findIndex(
+						(discussion) => discussion._id == action.payload._id
+					)
+				] = action.payload;
+			})
+			.addCase(reactHeart.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;

@@ -8,15 +8,14 @@ const getAllDiscussions = async () => {
 	return response.data.data.discussions;
 };
 
-// Get promotion
-const getDiscussion = async (promotionId, token) => {
-	const config = {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	};
+const getAllDiscussionsByTopic = async (topic) => {
+	const response = await axios.get(API_URL + `?topic=${topic}`);
+	return response.data.data.discussions;
+};
 
-	const response = await axios.get(API_URL + `/${promotionId}`, config);
+// Get promotion
+const getDiscussion = async (promotionId) => {
+	const response = await axios.get(API_URL + `/${promotionId}`);
 	return response.data.data.discussion;
 };
 
@@ -61,11 +60,21 @@ const updateDiscussion = async (token, promotionData, promotionId) => {
 	return response.data.data.updatedDiscussion;
 };
 
+const reactHeart = async (discussionId, accountId) => {
+	const response = await axios.patch(
+		API_URL + `/${discussionId}/${accountId}`,
+		{}
+	);
+	return response.data.data.discussion;
+};
+
 const promotionService = {
 	getAllDiscussions,
 	deleteDiscussion,
 	createDiscussion,
 	updateDiscussion,
 	getDiscussion,
+	getAllDiscussionsByTopic,
+	reactHeart,
 };
 export default promotionService;

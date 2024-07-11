@@ -15,7 +15,7 @@ import { MdOutlineCloudUpload } from "react-icons/md";
 import { errorStyle, successStyle } from '../../../utils/toast-customize';
 import toast from 'react-hot-toast';
 
-export const CreateDiscussion = () => {
+export const CreateDiscussion = ({fetchAllDiscussions}) => {
 	const fileRef = useRef(null);
 	const [file, setFile] = useState(undefined);
 	const [filePerc, setFilePerc] = useState(0);
@@ -72,12 +72,14 @@ export const CreateDiscussion = () => {
 	const onSubmit = async (data) => {
 		let topics = [];
 		selectedOptions.forEach((option) => topics.push(option.value));
+		console.log(imageUrl)
 		const result = await dispatch(createDiscussion({ ...data, topics, image: imageUrl }));
         if (result.type.endsWith('fulfilled')) {
 			toast.success('Tạo bài thảo luận thành công', successStyle);
 		} else if (result?.error?.message === 'Rejected') {
 			toast.error(result?.payload, errorStyle);
 		}
+		fetchAllDiscussions()
 	};
 
 	return (
@@ -104,6 +106,7 @@ export const CreateDiscussion = () => {
 					onChange={handleChangeTopics}
 					placeholder="Chọn chủ đề"
 				/>
+				<div className='flex gap-5 items-center'>
 				<button
 					className={`rounded-md rounded-customized-gray p-1 bg-primary border-0 text-white hover:cursor-pointer mb-3`}
 					onClick={(e) => {e.preventDefault(); fileRef.current.click()}}
@@ -116,7 +119,9 @@ export const CreateDiscussion = () => {
 					hidden
 					onChange={(e) => setFile(e.target.files[0])}
 				/>
-                <img src={imageUrl}/>
+                <img src={imageUrl} className='w-20 mb-5'/>
+				</div>
+				
 				<button
 					type="submit"
 					className="bg-primary text-white rounded-xl px-5 py-2 w-full"
