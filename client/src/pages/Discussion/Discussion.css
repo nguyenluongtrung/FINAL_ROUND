@@ -1,0 +1,23 @@
+/* Discussion.css */
+
+.discussion.light {
+    background-color: #F1F3F4; /* Màu nền khi ở chế độ sáng */
+    color: #000000; /* Màu chữ khi ở chế độ sáng */
+}
+
+.discussion.dark {
+    background-color: #1a202c; /* Màu nền khi ở chế độ tối */
+    color: #ffffff; /* Màu chữ khi ở chế độ tối */
+}
+
+/* Các lớp CSS khác cho từng chế độ */
+.discussion .bg-light {
+    background-color: #ffffff;
+    color: #000000; /* Màu nền phụ khi ở chế độ sáng */
+}
+
+.discussion .bg-dark {
+    background-color: #2d3748;
+    color: white; /* Màu nền phụ khi ở chế độ tối */
+}
+
