@@ -123,8 +123,8 @@ export const HomePage = () => {
           >
             <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-30">
-              <h1 className="text-4xl font-bold">Your Text Here</h1>
-              <p className="text-lg mt-4">Some additional text here.</p>
+              <h1 className="text-6xl font-bold">Sự kiện tưng bừng</h1>
+              <p className="text-lg mt-4">Jambojee đổ bộ nhà F</p>
             </div>
           </div>
           {/* 2. component có trong https://www.discourse.org/# */}
@@ -218,7 +218,7 @@ export const HomePage = () => {
           {/* 3. component có trong https://wordpress.com */}
           <div className="mt-32">
             <div className="text-center font-bold text-4xl">
-              NỘI DUNG ĐẢM BẢO UY TÍN
+              NỘI DUNG CÓ NGUỒN TIN RÕ RÀNG UY TÍN
             </div>
 
             <Marquee
@@ -282,7 +282,7 @@ export const HomePage = () => {
               </span>
             </div>
             <div
-              className="mt-6 text-3xl text-center"
+              className="mt-6 text-3xl text-center font-semibold"
               data-aos="fade-right"
               data-aos-offset="200"
             >
@@ -293,7 +293,7 @@ export const HomePage = () => {
               {postAi.map((post, index) => {
                 return (
                   <div
-                    className="relative h-[400px] w-[20%] overflow-hidden rounded-lg cursor-pointer group"
+                    className="relative h-[400px] w-[20%] overflow-hidden rounded-lg cursor-pointer group hvr-shutter-in-horizontal "
                     data-aos={index % 2 === 0 ? "fade-down" : "fade-up"}
                     data-aos-offset="400"
                   >
@@ -301,11 +301,10 @@ export const HomePage = () => {
                     <img
                       src={post.img}
                       alt={post.content}
-                      className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0 cursor-pointer"
+                      className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-45 cursor-pointer"
                     />
-                    {/* Text Overlay */}
-                    <div className="absolute inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                      <p className="text-black text-xl w-[80%]">
+                    <div className="absolute inset-0 bg-gray-800 flex items-center justify-center opacity-0 transition-opacity duration-1000 group-hover:opacity-100">
+                      <p className="text-white text-xl w-[80%] p-2 text-center font-bold">
                         {post.content}
                       </p>
                     </div>
@@ -445,12 +444,14 @@ export const HomePage = () => {
               <div class="absolute inset-0 bg-gradient-to-r from-primary to-light_primary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"></div>
               <div class="text-white relative bg-primary shadow-lg rounded-3xl p-20">
                 <div class="text-center pb-6">
-                  <h1 class="text-3xl font-bold">
-                    Đây là <span className="text-4xl text-[#1656AD]">địa điểm</span> chúng tôi làm việc!
+                  <h1 class="text-3xl font-bold text-black">
+                    Đây là{" "}
+                    <span className="text-4xl text-white">địa điểm</span>{" "}
+                    chúng tôi làm việc!
                   </h1>
 
-                  <p class="text-gray-300">
-                    Fill up the form below to send us a message.
+                  <p class="text-gray-300 pt-2">
+                    Chúng tôi luôn sẵn lòng nhận sự hỗ trợ của các bạn.
                   </p>
                 </div>
               </div>
