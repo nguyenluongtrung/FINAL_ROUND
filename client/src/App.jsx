@@ -10,6 +10,7 @@ import { Discussions } from './pages/Discussions/Discussions';
 import { Blog } from './pages/Blog/Blog';
 import { BlogManagement } from './pages/AdminPage/BlogPage/BlogManagement';
 import 'aos/dist/aos.css';
+import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 const App = () => {
 	return (
 		<Router>
@@ -31,6 +32,7 @@ const AppContent = () => {
 						<Route path="/discussions" element={<Discussions />} />
 						<Route path="/blogs" element={<Blog />} />
 						<Route path="/admin-blog" element={<BlogManagement />} />
+						<Route path="/sign-up" element={<SignUpPage />} />
 					</Route>
 				</Routes>
 			</div>

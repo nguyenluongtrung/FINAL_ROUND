@@ -5,7 +5,7 @@ export default {
 		colors: {
 			primary: '#fb7f0c',
 			green: '#40c22b',
-			blue:'#3C81F3',
+			blue: '#3C81F3',
 			yellow: '#ffca67',
 			brown: '#7d3f06',
 			gray: '#7d7b7b',
