@@ -53,7 +53,7 @@ export const BlogManagement = () => {
     }
 
     return (
-        <div className="w-full min-h-screen bg-white flex flex-row">
+        <div className="w-full min-h-screen bg-white flex flex-row mt-16">
             <div className="flex-1 px-10 pt-5">
                 <Toaster>
                     {(t) => (
