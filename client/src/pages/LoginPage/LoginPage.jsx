@@ -63,7 +63,7 @@ export const LoginPage = ({ setIsOpenLoginForm }) => {
             Chào mừng quay trở lại <span className="text-primary">FUHub</span>
           </p>
           <div className="mb-3 mt-5">
-            <p className="text-xs">Số điện thoại</p>
+            <p className="text-xs mb-1">Số điện thoại</p>
             <input
               type="text"
               className="border border-gray-500 rounded-md p-1 text-sm focus:outline-none"
@@ -76,7 +76,7 @@ export const LoginPage = ({ setIsOpenLoginForm }) => {
             )}
           </div>
           <div className="mb-4">
-            <p className="text-xs">Mật khẩu</p>
+            <p className="text-xs mb-1">Mật khẩu</p>
             <input
               type="password"
               className="border border-gray-500 rounded-md p-1 text-sm focus:outline-none"
