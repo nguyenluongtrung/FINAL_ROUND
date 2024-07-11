@@ -34,7 +34,7 @@ export const RegisterPage = ({ setIsOpenRegisterForm }) => {
           <h5 className="text-center font-bold mb-3">Đăng ký</h5>
           <hr></hr>
           <p className="font-bold mt-3 mb-4">
-            Chào mừng đến với <span className="text-primary">Antidee</span>
+            Chào mừng đến với <span className="text-primary">FUHub</span>
           </p>
           <Link>
             <Link to={"/sign-up"}>
@@ -66,17 +66,17 @@ export const RegisterPage = ({ setIsOpenRegisterForm }) => {
           </div>
 
           <div className="social-register">
-            <button className="flex border border-gray-500 rounded-md mb-3 p-3 items-center justify-between">
+            <button className="flex border border-gray-500 rounded-md mb-3 p-2 items-center justify-between">
               <BsFacebook className="mx-2" />{" "}
               <p className="font-bold text-xs">Đăng ký bằng Facebook</p>
               <div></div>
             </button>
-            <button className="flex border border-gray-500 rounded-md mb-3 p-3 items-center justify-between">
+            <button className="flex border border-gray-500 rounded-md mb-3 p-2 items-center justify-between">
               <TfiEmail className="mx-2" />{" "}
               <p className="font-bold text-xs">Đăng ký bằng Email</p>
               <div></div>
             </button>
-            <button className="flex border border-gray-500 rounded-md mb-3 p-3 items-center justify-between">
+            <button className="flex border border-gray-500 rounded-md mb-3 p-2 items-center justify-between">
               <FcGoogle className="mx-2" />{" "}
               <p className="font-bold text-xs">Đăng ký bằng Google</p>
               <div></div>
