@@ -52,4 +52,20 @@
     border-color: #007bff;
     outline: none;
   }
+
+  .ql-line-height {
+    .ql-picker-options {
+      padding: 4px 0px;
+      width: 100px;
+    }
+  
+    .ql-picker-label {
+      padding-left: 8px;
+    }
+  
+    .ql-picker-item {
+      padding-left: 8px;
+    }
+  }
+  
   
