@@ -28,7 +28,7 @@ export const Header = () => {
         }`}
       >
         <Link to="/home">
-          <p className="text-primary font-bold logo-text pt-2 flex items-center">Code Camp <FaCampground className="ml-2 size-8" /></p>
+          <p className="text-primary font-bold logo-text pt-2 flex items-center">Fu hub <FaCampground className="ml-2 size-8" /></p>
         </Link>
         <ul className="navbar-menu flex text-gray normal-text pt-2">
           <li className="mr-10 dropdown">

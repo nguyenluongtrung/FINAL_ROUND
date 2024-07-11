@@ -51,22 +51,22 @@ export const Discussions = () => {
 						} rounded-lg shadow-md p-4 space-y-2`}
 					>
 						<button
-							className="bg-primary text-white rounded-xl px-5 py-2 w-full"
+							className="bg-primary text-white rounded-xl px-5 py-2 w-full font-semibold	hover:bg-primary_dark fea-item"
 							onClick={() => setIsCreateDiscussionOpen(true)}
 						>
 							Tạo thảo luận
 						</button>
-						<div className="flex items-center p-3 rounded-md gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
-							<MdFiberNew className="text-red-500 bg-red-200 rounded-full w-7 h-7 p-1" />
-							<h3 className="text-base font-bold">Newest and Recent</h3>
+						<div className="flex items-center p-3 rounded-md gap-2 hover:bg-primary transition duration-300 cursor-pointer hvr-shutter-in-horizontal">
+							<MdFiberNew className="text-white bg-red rounded-full w-7 h-7 p-1 " />
+							<div className="font-semibold">Các bài mới nhất</div>
 						</div>
-						<div className="flex items-center p-3 rounded-md gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
-							<BsPostcardHeartFill className="text-green-500 bg-green-200 rounded-full w-7 h-7 p-1" />
-							<h3 className="text-base font-bold">Popular of the day</h3>
+						<div className="flex items-center p-3 rounded-md gap-2 hover:bg-primary  transition duration-300 cursor-pointer hvr-shutter-in-horizontal">
+							<BsPostcardHeartFill className="text-white bg-green rounded-full w-7 h-7 p-1" />
+							<div className="font-semibold">Phổ biến nhất trong ngày</div>
 						</div>
-						<div className="flex items-center p-3 rounded-md gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
-							<FaUser className="text-blue-500 bg-blue-200 rounded-full w-7 h-7 p-1" />
-							<h3 className="text-base font-bold">Following</h3>
+						<div className="flex items-center p-3 rounded-md gap-2 hover:bg-primary  transition duration-300 cursor-pointer hvr-shutter-in-horizontal">
+							<FaUser className="text-white bg-blue rounded-full w-7 h-7 p-1" />
+							<div className="font-semibold">Đang theo dõi</div>
 						</div>
 					</div>
 
@@ -77,26 +77,26 @@ export const Discussions = () => {
 					>
 						<h2 className="text-base font-bold mb-6">Chủ đề phổ biến</h2>
 						<div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
-								<GiArtificialIntelligence className="mr-2 text-blue-500 w-8 h-8" />
-								<strong>Trí thông minh nhân tạo (AI)</strong>
+							<div className="flex items-center mb-4 hover:bg-primary p-2 rounded-lg cursor-pointer hvr-shutter-in-horizontal">
+								<GiArtificialIntelligence className="mr-2 text-blue w-8 h-8" />
+								<div className='font-semibold'>Trí thông minh nhân tạo (AI)</div>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
-								<SiNordicsemiconductor className="mr-2 text-green-500 w-8 h-8" />
-								<strong>Bán dẫn</strong>
+							<div className="flex items-center mb-4 hover:bg-primary p-2 rounded-lg cursor-pointer hvr-shutter-in-horizontal">
+								<SiNordicsemiconductor className="mr-2 text-green w-8 h-8" />
+								<div className='font-semibold'>Bán dẫn</div>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
-								<img src={logoFPT} className="w-8 h-8 mr-2" alt="FPT Logo" />
-								<strong>Đại học FPT</strong>
+							<div className="flex items-center mb-4 hover:bg-primary p-2 rounded-lg cursor-pointer hvr-shutter-in-horizontal">
+								<img src={logoFPT} className="w-8 h-auto mr-2" alt="FPT Logo" />
+								<div className='font-semibold'>Đại học FPT</div>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
-								<CiCircleMore className="mr-2 w-8 h-8 text-purple-500" />
-								<strong>More</strong>
+							<div className="flex items-center mb-4 hover:bg-primary p-2 rounded-lg cursor-pointer hvr-shutter-in-horizontal">
+								<CiCircleMore className="mr-2 w-8 h-8 text-purple" />
+								<div className='font-semibold'>More</div>
 							</div>
 							<button
 								className="flex items-center w-full justify-center text-sm
                              text-white font-semibold rounded-md p-2
-                              bg-orange-500 hover:bg-orange-600 transition duration-300"
+                              bg-orange hover:bg-orange-600 transition duration-300"
 							>
 								Đăng tin
 								<FaPenSquare className="mt-1 ml-2" />
@@ -110,7 +110,7 @@ export const Discussions = () => {
 					{chosenDiscussion && (
 						<DiscussionDetail chosenDiscussion={chosenDiscussion} />
 					)}
-					<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5">
+					<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5 fea-item">
 						Bài thảo luận mới nhất
 					</button>
 					{!chosenDiscussion &&
@@ -118,7 +118,7 @@ export const Discussions = () => {
 							return (
 								<>
 									<div
-										className="pt-4 mt-4 cursor-pointer"
+										className="pt-4 mt-4 cursor-pointer fea-item"
 										onClick={() => {
 											setChosenDiscussion(discussion);
 											setIsViewDetailDiscussionOpen(true);
@@ -157,7 +157,7 @@ export const Discussions = () => {
 														className="w-8 h-8 rounded-full mr-2"
 													/>
 													<strong>Pavel Gvay</strong>
-													<p className="text-sm text-gray-500 ml-2">
+													<p className="text-sm text-gray ml-2">
 														3 weeks ago
 													</p>
 												</div>
@@ -182,15 +182,15 @@ export const Discussions = () => {
 						<strong className="text-base font-bold block mb-4">
 							Thảo luận hàng đầu
 						</strong>
-						<div className="flex justify-between items-center p-2 rounded-lg mb-3 border">
+						<div className="flex justify-between items-center p-2 rounded-lg mb-3 border border-light_gray hover:bg-light_gray cursor-pointer">
 							<div>
-								<p className=" text-sm">Business & finance</p>
-								<strong className="text-base  ">Telegram</strong>
+								<p className="text-sm">Business & finance</p>
+								<strong className="text-base">Telegram</strong>
 								<p className=" text-sm ">936K posts</p>
 							</div>
 							<BsThreeDots />
 						</div>
-						<div className="flex justify-between items-center p-2 rounded-lg mb-3 border">
+						<div className="flex justify-between items-center p-2 rounded-lg mb-3 border border-light_gray hover:bg-light_gray cursor-pointer">
 							<div>
 								<p className=" text-sm">Business & finance</p>
 								<strong className="text-base">Telegram</strong>
@@ -208,41 +208,41 @@ export const Discussions = () => {
 							<strong className="text-base font-bold block mb-4">
 								Lượt truy cập người dùng
 							</strong>
-							<p className="text-blue-500 font-semibold hover:text-blue-900 cursor-pointer">
+							<p className="text-blue font-semibold hover:text-blue-900 cursor-pointer">
 								Tất cả
 							</p>
 						</div>
-						<div className="flex items-center space-x-4 mb-4">
+						<div className="flex items-center justify-center mb-4">
 							<img
 								alt="avatar"
 								src=""
 								className="rounded-full border w-8 h-8"
 							/>
-							<div>
+							<div className='ml-4'>
 								<strong className="block">Mark Wazauiski</strong>
-								<p className="text-gray-400">@markwazauz</p>
+								<p className="text-gray">@markwazauz</p>
 							</div>
-							<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
-								<IoIosAdd className="text-blue-400 text-2xl ml-1" />
-								<button className="text-blue-400 text-sm font-semibold py-1 px-2">
-									Follow
+							<div className="ml-auto flex items-center rounded-full border border-blue text-blue hover:bg-blue hover:text-white">
+								<IoIosAdd className="text-2xl ml-1" />
+								<button className="text-sm font-semibold py-1 px-2">
+									Theo dõi
 								</button>
 							</div>
 						</div>
-						<div className="flex items-center space-x-4 mb-4">
+						<div className="flex items-center mb-4">
 							<img
 								alt="avatar"
 								src=""
 								className="rounded-full border w-8 h-8"
 							/>
-							<div>
+							<div className='ml-4'>
 								<strong className="block">Mark Wazauiski</strong>
-								<p className="text-gray-400">@markwazauz</p>
+								<p className="text-gray">@markwazauz</p>
 							</div>
-							<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
-								<IoIosAdd className="text-blue-400 text-2xl ml-1" />
-								<button className="text-blue-400 text-sm font-semibold py-1 px-2">
-									Follow
+							<div className="ml-auto flex items-center rounded-full border border-blue text-blue hover:bg-blue hover:text-white">
+								<IoIosAdd className=" text-2xl ml-1" />
+								<button className=" text-sm font-semibold py-1 px-2">
+									Theo dõi
 								</button>
 							</div>
 						</div>
@@ -253,20 +253,20 @@ export const Discussions = () => {
 						} p-4 mt-4 rounded-lg shadow-md`}
 					>
 						<h3 className="font-bold mb-4">Tìm hiểu thêm</h3>
-						<div className="flex items-center gap-2 mb-4 hover:bg-gray-100 transition duration-300 cursor-pointer p-3">
-							<IoIosAdd className="w-6 h-6 text-green-500" />
+						<div className="flex items-center gap-2 mb-4 hover:bg-primary hover:text-white rounded-lg transition duration-300 cursor-pointer p-3">
+							<IoIosAdd className="w-6 h-6 text-green" />
 							<span className="font-semibold">Create New Post</span>
 						</div>
-						<div className="flex items-center gap-2 mb-4 hover:bg-gray-100 transition duration-300 cursor-pointer p-3">
-							<IoIosAdd className="w-6 h-6 text-blue-500" />
+						<div className="flex items-center gap-2 mb-4 hover:bg-primary hover:text-white rounded-lg transition duration-300 cursor-pointer p-3">
+							<IoIosAdd className="w-6 h-6 text-blue" />
 							<span className=" font-semibold">Add Friend</span>
 						</div>
-						<div className="flex items-center gap-2 mb-4 hover:bg-gray-100 transition duration-300 cursor-pointer p-3">
-							<IoIosAdd className="w-6 h-6 text-orange-500" />
+						<div className="flex items-center gap-2 mb-4 hover:bg-primary hover:text-white rounded-lg transition duration-300 cursor-pointer p-3">
+							<IoIosAdd className="w-6 h-6 text-orange" />
 							<span className="font-semibold">Join Group</span>
 						</div>
-						<div className="flex items-center gap-2 mb-4 hover:bg-gray-100 transition duration-300 cursor-pointer p-3">
-							<IoIosAdd className="w-6 h-6 text-red-500" />
+						<div className="flex items-center gap-2 mb-4 hover:bg-primary hover:text-white rounded-lg transition duration-300 cursor-pointer p-3">
+							<IoIosAdd className="w-6 h-6 text-red" />
 							<span className="font-semibold">Follow Page</span>
 						</div>
 					</div>
