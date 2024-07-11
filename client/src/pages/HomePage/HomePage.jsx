@@ -462,14 +462,14 @@ export const HomePage = () => {
       {/* Nơi làm việc */}
       <div className="flex items-center justify-around">
         <div data-aos="fade-right" data-aos-delay="100" data-aos-offset="400">
-          <div class="min-h-screen bg-gray-800 py-6 flex flex-col justify-center sm:py-12">
+          <div class="min-h-screen bg-gray-800 py-6 flex flex-col justify-center">
             <div
               class="relative py-3 sm:max-w-xl sm:mx-auto"
               data-aos="fade-right"
               // data-aos-delay="100"
               data-aos-offset="400"
             >
-              <div class="absolute inset-0 bg-gradient-to-r from-primary to-light_primary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-primary to-light_primary shadow-lg transform -skew-y-6 rounded-3xl"></div>
               <div class="text-white relative bg-primary shadow-lg rounded-3xl p-20">
                 <div class="text-center pb-6">
                   <h1 class="text-3xl font-bold text-black">

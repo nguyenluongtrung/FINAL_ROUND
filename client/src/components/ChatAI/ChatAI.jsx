@@ -62,7 +62,7 @@ export const ChatAI = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-orange-50 to-orange-100 z-21">
+    <div className="flex justify-center items-center h-10 bg-gradient-to-r from-orange-50 to-orange-100 z-21">
       <div
         className={`fixed bottom-4 right-4 bg-white shadow-lg rounded-lg ${isChatOpen ? "w-96 h-3/4" : "w-16 h-16"
           } transition-all duration-300 overflow-hidden`}

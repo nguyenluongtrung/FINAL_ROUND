@@ -27,7 +27,7 @@ const IntroScreen = ({ onComplete }) => {
   }, [onComplete]);
 
   const [typeEffect] = useTypewriter({
-    words: ["CHÚC MỪNG 25 NĂM THÀNH LẬP HỆ THỐNG FPT EDUCATION !!!!!!!!"],
+    words: ["CHÚC MỪNG 25 NĂM THÀNH LẬP HỆ THỐNG FPT EDUCATION !!!"],
     loop: {},
     typeSpeed: 70,
     deleteSpeed: 40,
