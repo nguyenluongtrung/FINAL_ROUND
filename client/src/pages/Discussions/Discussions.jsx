@@ -2,9 +2,7 @@ import { GiArtificialIntelligence } from 'react-icons/gi';
 import { SiNordicsemiconductor } from 'react-icons/si';
 import logoFPT from '../../../public/img/logo-FPT.png';
 import { FaUser } from 'react-icons/fa';
-import { CiCircleMore } from 'react-icons/ci';
 import { FaPenSquare } from 'react-icons/fa';
-import { BsThreeDots } from 'react-icons/bs';
 import { IoIosAdd } from 'react-icons/io';
 import { MdFiberNew } from 'react-icons/md';
 import { FaRegHeart } from 'react-icons/fa';
@@ -13,18 +11,25 @@ import './Discussions.css';
 import { useEffect, useState } from 'react';
 import { CreateDiscussion } from './CreateDiscussion/CreateDiscussion';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDiscussions, getAllDiscussionsByTopic } from '../../features/discussions/discussionSlice';
+import {
+	getAllDiscussions,
+	getAllDiscussionsByPopular,
+	getAllDiscussionsByTopic,
+} from '../../features/discussions/discussionSlice';
 import { Spinner } from './../../components/Spinner/Spinner';
 import { DiscussionDetail } from './DiscussionDetail/DiscussionDetail';
-import avatar from './../../assets/male3-512.webp'
+import avatar from './../../assets/male3-512.webp';
+import { getAllAccounts } from '../../features/auth/authSlice';
 
 export const Discussions = () => {
 	const [isDarkMode, setIsDarkMode] = useState(false);
+	const [accounts, setAccounts] = useState();
 	const [isCreateDiscussionOpen, setIsCreateDiscussionOpen] = useState(false);
 	const [isViewDetailDiscussionOpen, setIsViewDetailDiscussionOpen] =
 		useState(false);
 	const [chosenDiscussion, setChosenDiscussion] = useState();
 	const [discussions, setDiscussions] = useState();
+	const [topDiscussions, setTopDiscussions] = useState();
 	const { isLoading } = useSelector((state) => state.discussions);
 
 	const dispatch = useDispatch();
@@ -38,10 +43,28 @@ export const Discussions = () => {
 		fetchAllDiscussions();
 	}, []);
 
-    const handleGetDiscussionsByTopic = async (topic) => {
-        const response = await dispatch(getAllDiscussionsByTopic(topic));
+	const fetchAllTopDiscussions = async () => {
+		const response = await dispatch(getAllDiscussionsByPopular());
+		setTopDiscussions(response.payload);
+	};
+
+	const fetchAllAccounts = async () => {
+		const response = await dispatch(getAllAccounts());
+		setAccounts(response.payload);
+	};
+
+	useEffect(() => {
+		fetchAllTopDiscussions();
+	}, []);
+
+	useEffect(() => {
+		fetchAllAccounts();
+	}, []);
+
+	const handleGetDiscussionsByTopic = async (topic) => {
+		const response = await dispatch(getAllDiscussionsByTopic(topic));
 		setDiscussions(response.payload);
-    }
+	};
 
 	if (isLoading) {
 		return <Spinner />;
@@ -83,15 +106,24 @@ export const Discussions = () => {
 					>
 						<h2 className="text-base font-semibold mb-3">Chủ đề phổ biến</h2>
 						<div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer" onClick={() => handleGetDiscussionsByTopic('AI')}>
+							<div
+								className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer"
+								onClick={() => handleGetDiscussionsByTopic('AI')}
+							>
 								<GiArtificialIntelligence className="mr-2 text-blue-500 w-8 h-8" />
 								<p>Trí thông minh nhân tạo (AI)</p>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer" onClick={() => handleGetDiscussionsByTopic('Bán dẫn')}>
+							<div
+								className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer"
+								onClick={() => handleGetDiscussionsByTopic('Bán dẫn')}
+							>
 								<SiNordicsemiconductor className="mr-2 text-green-500 w-8 h-8" />
 								<p>Bán dẫn</p>
 							</div>
-							<div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer" onClick={() => handleGetDiscussionsByTopic('FPT')}>
+							<div
+								className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg hover:cursor-pointer"
+								onClick={() => handleGetDiscussionsByTopic('FPT')}
+							>
 								<img src={logoFPT} className="w-8 h-8 mr-2" alt="FPT Logo" />
 								<p>Đại học FPT</p>
 							</div>
@@ -108,12 +140,18 @@ export const Discussions = () => {
 				</div>
 
 				<div className="p-4">
-					{!chosenDiscussion && isCreateDiscussionOpen && <CreateDiscussion fetchAllDiscussions={fetchAllDiscussions}/>}
+					{!chosenDiscussion && isCreateDiscussionOpen && (
+						<CreateDiscussion fetchAllDiscussions={fetchAllDiscussions} />
+					)}
 					{chosenDiscussion && (
-						<DiscussionDetail chosenDiscussion={chosenDiscussion} fetchAllDiscussions={fetchAllDiscussions} setChosenDiscussion={setChosenDiscussion}/>
+						<DiscussionDetail
+							chosenDiscussion={chosenDiscussion}
+							fetchAllDiscussions={fetchAllDiscussions}
+							setChosenDiscussion={setChosenDiscussion}
+						/>
 					)}
 					{!chosenDiscussion && (
-						<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5">
+						<button className="text-white bg-primary rounded-md px-5 py-1.5 mt-5 w-56">
 							Bài thảo luận mới nhất
 						</button>
 					)}
@@ -186,7 +224,7 @@ export const Discussions = () => {
 						<strong className="text-base font-bold block mb-4">
 							Thảo luận hàng đầu
 						</strong>
-						{discussions?.map((discussion) => {
+						{topDiscussions?.map((discussion) => {
 							return (
 								<div className="p-2 rounded-lg mb-3 shadow-lg">
 									<p className="text-base font-semibold mb-3">
@@ -201,7 +239,9 @@ export const Discussions = () => {
 											);
 										})}
 
-										<p className=" mt-3 text-sm flex items-center gap-1">{discussion.loveCount} <FaRegHeart size={10} /></p>
+										<p className=" mt-3 text-sm flex items-center gap-1">
+											{discussion.loveCount} <FaRegHeart size={10} />
+										</p>
 									</div>
 								</div>
 							);
@@ -220,39 +260,30 @@ export const Discussions = () => {
 								Tất cả
 							</p>
 						</div>
-						<div className="flex items-center space-x-4 mb-4">
-							<img
-								alt="avatar"
-								src={avatar}
-								className="rounded-full border w-8 h-8"
-							/>
-							<div>
-								<strong className="block">Mark Wazauiski</strong>
-								<p className="text-gray-400">@markwazauz</p>
-							</div>
-							<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
-								<IoIosAdd className="text-blue-400 text-2xl ml-1" />
-								<button className="text-blue-400 text-sm font-semibold py-1 px-2">
-                                Theo dõi
-								</button>
-							</div>
-						</div>
-						<div className="flex items-center space-x-4 mb-4">
-							<img
-								alt="avatar"
-								src={avatar}
-								className="rounded-full border w-8 h-8"
-							/>
-							<div>
-								<strong className="block">Mark Wazauiski</strong>
-								<p className="text-gray-400">@markwazauz</p>
-							</div>
-							<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
-								<IoIosAdd className="text-blue-400 text-2xl ml-1" />
-								<button className="text-blue-400 text-sm font-semibold py-1 px-2">
-									Theo dõi
-								</button>
-							</div>
+						<div className="mb-4">
+							{accounts?.map((acc) => {
+								return (
+									<div className="flex gap-3 items-center">
+										<img
+											alt="avatar"
+											src={acc.avatar}
+											className="rounded-full border w-8 h-8"
+										/>
+										<div>
+											<div className="flex justify-between">
+                                                <p className='font-bold'>{acc.name}</p>
+												<div className="ml-auto flex items-center rounded-full border border-blue-500 transition duration-300">
+													<IoIosAdd className="text-blue-400 text-2xl ml-1" />
+													<button className="text-blue-400 text-sm font-semibold py-1 px-2">
+														Theo dõi
+													</button>
+												</div>
+											</div>
+											<p className="text-gray-400">{acc.email}</p>
+										</div>
+									</div>
+								);
+							})}
 						</div>
 					</div>
 					<div

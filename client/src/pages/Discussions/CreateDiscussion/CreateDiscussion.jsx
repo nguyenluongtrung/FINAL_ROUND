@@ -108,10 +108,10 @@ export const CreateDiscussion = ({fetchAllDiscussions}) => {
 				/>
 				<div className='flex gap-5 items-center'>
 				<button
-					className={`rounded-md rounded-customized-gray p-1 bg-primary border-0 text-white hover:cursor-pointer mb-3`}
+					className={`rounded-md rounded-customized-gray p-1 !w-36 bg-primary border-0 text-white hover:cursor-pointer mb-3`}
 					onClick={(e) => {e.preventDefault(); fileRef.current.click()}}
 				>
-					<div className='flex gap-3 items-center p-1.5'><MdOutlineCloudUpload size={20}/><p>Chọn ảnh</p></div>
+					<div className='flex gap-3 items-center p-1.5 '><MdOutlineCloudUpload size={20}/><p>Chọn ảnh</p></div>
 				</button>
 				<input
 					type="file"

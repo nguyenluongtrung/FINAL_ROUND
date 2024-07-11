@@ -5,13 +5,14 @@ const {
 	updateDiscussion,
 	deleteDiscussion,
 	getDiscussionById,
+	getAllDiscussionsByPopular,
 	reactHeart,
 } = require('../controllers/discussionController');
 const { protect } = require('../middleware/accountMiddleware');
 const router = express.Router();
 
-router.route('/').get(getAllDiscussions);
-router.route('/').post(createDiscussion);
+router.route('/').get(getAllDiscussions).post(createDiscussion);
+router.route('/popular').get(getAllDiscussionsByPopular);
 
 router.route('/:discussionId/:accountId').patch(reactHeart);
 

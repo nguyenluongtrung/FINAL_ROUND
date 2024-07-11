@@ -40,6 +40,17 @@ const getAllDiscussions = asyncHandler(async (req, res) => {
 	}
 });
 
+const getAllDiscussionsByPopular = asyncHandler(async (req, res) => {
+	const discussions = await Discussion.find({}).sort({ loveCount: -1 }).exec();
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			discussions,
+		},
+	});
+});
+
 const getDiscussionById = asyncHandler(async (req, res) => {
 	try {
 		const discussion = await Discussion.findById(req.params.discussionId);
@@ -150,4 +161,5 @@ module.exports = {
 	deleteDiscussion,
 	getDiscussionById,
 	reactHeart,
+	getAllDiscussionsByPopular,
 };

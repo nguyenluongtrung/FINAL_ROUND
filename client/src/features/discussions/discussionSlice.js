@@ -21,6 +21,23 @@ export const getAllDiscussions = createAsyncThunk(
 		}
 	}
 );
+export const getAllDiscussionsByPopular = createAsyncThunk(
+	'auth/getAllDiscussionsByPopular',
+	async (_, thunkAPI) => {
+		try {
+			return await discussionService.getAllDiscussionsByPopular();
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
 
 export const getDiscussion = createAsyncThunk(
 	'auth/getDiscussion',
@@ -170,6 +187,20 @@ export const authSlice = createSlice({
 				state.discussions = action.payload;
 			})
 			.addCase(getAllDiscussions.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+				state.discussions = [];
+			})
+			.addCase(getAllDiscussionsByPopular.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllDiscussionsByPopular.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions = action.payload;
+			})
+			.addCase(getAllDiscussionsByPopular.rejected, (state, action) => {
 				state.isLoading = false;
 				state.isError = true;
 				state.message = action.payload;

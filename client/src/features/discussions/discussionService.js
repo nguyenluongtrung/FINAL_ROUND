@@ -8,6 +8,11 @@ const getAllDiscussions = async () => {
 	return response.data.data.discussions;
 };
 
+const getAllDiscussionsByPopular = async () => {
+	const response = await axios.get(API_URL + '/popular');
+	return response.data.data.discussions;
+};
+
 const getAllDiscussionsByTopic = async (topic) => {
 	const response = await axios.get(API_URL + `?topic=${topic}`);
 	return response.data.data.discussions;
@@ -76,5 +81,6 @@ const promotionService = {
 	getDiscussion,
 	getAllDiscussionsByTopic,
 	reactHeart,
+	getAllDiscussionsByPopular,
 };
 export default promotionService;
