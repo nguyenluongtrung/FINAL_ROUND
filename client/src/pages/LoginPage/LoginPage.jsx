@@ -60,10 +60,10 @@ export const LoginPage = ({ setIsOpenLoginForm }) => {
           <h5 className="text-center font-bold mb-3">Đăng nhập</h5>
           <hr></hr>
           <p className="font-bold mt-3">
-            Chào mừng quay trở lại <span className="text-primary">Antidee</span>
+            Chào mừng quay trở lại <span className="text-primary">FUHub</span>
           </p>
           <div className="mb-3 mt-5">
-            <p className="small-text">Số điện thoại</p>
+            <p className="text-xs">Số điện thoại</p>
             <input
               type="text"
               className="border border-gray-500 rounded-md p-1 text-sm focus:outline-none"
@@ -76,7 +76,7 @@ export const LoginPage = ({ setIsOpenLoginForm }) => {
             )}
           </div>
           <div className="mb-4">
-            <p className="small-text">Mật khẩu</p>
+            <p className="text-xs">Mật khẩu</p>
             <input
               type="password"
               className="border border-gray-500 rounded-md p-1 text-sm focus:outline-none"
@@ -88,13 +88,13 @@ export const LoginPage = ({ setIsOpenLoginForm }) => {
           </div>
           <button
             type="submit"
-            className="block bg-primary text-white text-center rounded-md p-2 font-medium mb-1"
+            className="block bg-primary text-white text-center rounded-md p-2 font-semibold mb-1"
           >
             <p>Đăng nhập</p>
           </button>
           <Link to={"/forgot-password"}>
             <button
-              className="text-right small-text font-medium mb-2"
+              className="text-right text-xs font-medium mb-2"
               onClick={() => setIsOpenLoginForm(false)}
             >
               Quên mật khẩu
@@ -106,17 +106,17 @@ export const LoginPage = ({ setIsOpenLoginForm }) => {
             <div class="flex-grow border-t border-gray"></div>
           </div>
           <div className="social-login">
-            <button className="flex border border-gray-500 rounded-md mb-3 p-3 items-center justify-between">
+            <button className="flex border border-gray-500 rounded-md mb-3 p-2 items-center justify-between">
               <BsFacebook className="mx-2" />{" "}
               <p className="font-bold text-xs">Đăng ký bằng Facebook</p>
               <div></div>
             </button>
-            <button className="flex border border-gray-500 rounded-md mb-3 p-3 items-center justify-between">
+            <button className="flex border border-gray-500 rounded-md mb-3 p-2 items-center justify-between">
               <TfiEmail className="mx-2" />{" "}
               <p className="font-bold text-xs">Đăng ký bằng Email</p>
               <div></div>
             </button>
-            <button className="flex border border-gray-500 rounded-md mb-3 p-3 items-center justify-between">
+            <button className="flex border border-gray-500 rounded-md mb-3 p-2 items-center justify-between">
               <FcGoogle className="mx-2" />{" "}
               <p className="font-bold text-xs">Đăng ký bằng Google</p>
               <div></div>
