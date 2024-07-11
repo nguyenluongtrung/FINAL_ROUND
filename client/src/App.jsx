@@ -12,6 +12,7 @@ import { BlogManagement } from './pages/AdminPage/BlogPage/BlogManagement';
 import 'aos/dist/aos.css';
 import { SignUpPage } from './pages/SignUpPage/SignUpPage';
 import {SeeMore} from './pages/Blog/SeeMore/SeeMore'
+import TimeLine from './pages/TimeLine/TimeLine';
 const App = () => {
 	return (
 		<Router>
@@ -35,6 +36,7 @@ const AppContent = () => {
 						<Route path="/admin-blog" element={<BlogManagement />} />
 						<Route path="/sign-up" element={<SignUpPage />} />
 						<Route path="/see-more" element={<SeeMore />} />
+						<Route path="/time-line" element={<TimeLine />} />
 					</Route>
 				</Routes>
 			</div>

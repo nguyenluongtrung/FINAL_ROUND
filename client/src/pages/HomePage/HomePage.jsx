@@ -49,24 +49,24 @@ export const HomePage = () => {
       content: "Trường ĐH FPT công bố điểm",
     },
     {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwvN7KzMA4hQwfwgcMzwFTOan6wxodfdfArw&s",
-      content: "Học sinh lo lắng khi đối mặt với kì thi Final",
+      img: "https://fpt-semiconductor.com/wp-content/uploads/cwv-webp-images/2022/11/image-10.jpg.webp",
+      content: "Chuyên ngành bán dẫn ở ĐH FPT",
     },
     {
-      img: "https://fptcity.vn/wp-content/uploads/z2111894361184_cab20108c6e8264d6c6c263a5c032f26.jpg",
-      content: "Trường ĐH FPT Nghị Định Mới",
+      img: "https://daihoc.fpt.edu.vn/wp-content/uploads/2022/06/theo-duoi-nganh-tri-tue-nhan-tao.jpg",
+      content: "Chuyên Ngành AI ở ĐH FPT",
     },
     {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg5RsTdxtsal_SIGZGx0gmLlqJWHVzkB59lQ&s",
+      img: "https://fpt-semiconductor.com/wp-content/uploads/cwv-webp-images/2024/03/DESIGN-FSEMI-_-THUMB-WEBSITE-13.jpg.webp",
       content: "Nên theo học chuyên ngành bán dẫn?",
     },
     {
-      img: "https://data.ihoc.vn/ihoc-bucket/2023/10/truong-dai-hoc-fpt-da-nang.jpeg",
-      content: "Những lời bình luận có cánh về trường FPT",
+      img: "https://imagev3.vietnamplus.vn/1200x630/Uploaded/2024/xtsqr/2023_12_12/ong-nguyen-van-khoa-tong-giam-doc-fpt-chia-se-ve-chu-de-fpt-tu-chip-nguon-den-giac-mo-ban-dan-anh-giang-huy1-5921.jpg.webp",
+      content: "FPT và giấc mơ bán dẫn",
     },
     {
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp0X5HVmGNnGwSJNVoXh2CZMawDAmtbzfzBA&s",
-      content: "Thi tốt nghiệp",
+      img: "https://daihoc.fpt.edu.vn/wp-content/uploads/2022/06/hoc-tri-tue-nhan-tao-o-dau.jpg",
+      content: "Trí tuệ nhân tạo ở đại học FPT",
     },
   ];
 
@@ -91,19 +91,19 @@ export const HomePage = () => {
   const postAi = [
     {
       img: "https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-      content: "Đại học FPT dấn thân vào AI",
+      content: "Đại học FPT và công cuộc làm chủ AI",
     },
     {
-      img: "https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-      content: "Đại học FPT dấn thân vào AI",
+      img: "https://i-vnexpress.vnecdn.net/2021/05/17/FPT-1621246824.jpg",
+      content: "FPT trí tuệ nhân tạo TOÀN DIỆN",
     },
     {
-      img: "https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-      content: "Đại học FPT dấn thân vào AI",
+      img: "https://scontent.fsgn2-8.fna.fbcdn.net/v/t1.15752-9/449886059_453293727600534_1503606143306351165_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_ohc=UJuUr_aunbcQ7kNvgFAoz5w&_nc_ht=scontent.fsgn2-8.fna&oh=03_Q7cD1QFK9mMiIDM6m8N94jqgMFdXfWnWxzQhddQfD6Dwz2aN3A&oe=66B7C712",
+      content: "Trợ lí ảo tổng đài",
     },
     {
-      img: "https://imageio.forbes.com/specials-images/imageserve/64b5825a5b9b4d3225e9bd15/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds",
-      content: "Đại học FPT dấn thân vào AI",
+      img: "https://daihoc.fpt.edu.vn/wp-content/uploads/2022/06/theo-duoi-nganh-tri-tue-nhan-tao.jpg?fbclid=IwZXh0bgNhZW0CMTEAAR22G7hgUfwkCwvKNRTHFeQ043lwQvfl8OtWGPFY75ld7sC-PW19H9-Ye5g_aem_fCekC_i6NUgw6Fq82Y7gTg",
+      content: "Theo đuổi chuyên ngành trí tuệ  nhân tạo",
     },
   ];
 
@@ -132,14 +132,14 @@ export const HomePage = () => {
             <div
               className="font-bold text-4xl"
               data-aos="fade-down"
-              data-aos-offset="200"
+              data-aos-offset="400"
             >
               THU HÚT<span className="text-primary"> NGƯỜI DÙNG</span>
             </div>
             <div
               className="mt-6 text-3xl font-semibold"
               data-aos="fade-right"
-              data-aos-offset="200"
+              data-aos-offset="400"
             >
               Mỗi ngày có hơn <span className="text-5xl text-green">500</span>{" "}
               người truy cập
@@ -147,7 +147,7 @@ export const HomePage = () => {
             <div
               className="mt-5 text-2xl"
               data-aos="fade-left"
-              data-aos-offset="200"
+              data-aos-offset="400"
             >
               Khám phá thêm nhiều nội dung mới ở trong trang web
             </div>
@@ -155,12 +155,12 @@ export const HomePage = () => {
             <div
               className="flex mt-20 justify-center"
               data-aos="fade-down"
-              data-aos-offset="200"
+              data-aos-offset="400"
             >
               <div className="rotate-left flex flex-col w-[30%] items-center justify-center overflow-hidden rounded-3xl -mr-10 bg-white">
                 <img
                   src={images[0]}
-                  className="w-full h-72 object-cover mb-4"
+                  className="w-full h-72 object-cover mb-4 rounded-lg"
                   alt="Image"
                 />
                 <div className="font-bold">
@@ -169,19 +169,21 @@ export const HomePage = () => {
               </div>
               <div className="rotate-right flex flex-col w-[30%] items-center justify-center overflow-hidden rounded-3xl -mr-10  animate-pulse">
                 <img
-                  src={images[1]}
-                  className="w-full h-72 object-cover mb-4"
+                  src="https://scontent.fsgn2-9.fna.fbcdn.net/v/t1.15752-9/449444002_481201158104830_433083719325365606_n.png?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_ohc=mtUh58-8MkEQ7kNvgHdY6CK&_nc_ht=scontent.fsgn2-9.fna&oh=03_Q7cD1QG4pP4eUr0Yo7Z3-IGEHP5hoYLlg9OrzxnAVbSrofI_2A&oe=66B7D124"
+                  className="w-full h-72 object-cover mb-4 rounded-lg"
                   alt="Image"
                 />
-                <div>VÒNG CHUNG KẾT CODE CAMP</div>
+                <div className="font-bold">VÒNG CHUNG KẾT CODE CAMP</div>
               </div>
               <div className="rotate-left flex flex-col w-[30%] items-center justify-center overflow-hidden rounded-3xl -mr-10">
                 <img
                   src={images[2]}
-                  className="w-full h-72 object-cover mb-4"
+                  className="w-full h-72 object-cover mb-4 rounded-lg"
                   alt="Image"
                 />
-                <div>SINH VIÊN HÁO HỨC ĐƯỢC THAM GIA VÀO HỘI TRẠI</div>
+                <div className="font-bold">
+                  SINH VIÊN HÁO HỨC ĐƯỢC THAM GIA VÀO HỘI TRẠI
+                </div>
               </div>
             </div>
             <div
@@ -191,91 +193,105 @@ export const HomePage = () => {
             >
               <div className="rotate-right flex flex-col w-[30%] items-center justify-center overflow-hidden rounded-3xl -mr-10 animate-pulse">
                 <img
-                  src={images[0]}
-                  className="w-full h-72 object-cover mb-4"
+                  src="https://daihoc.fpt.edu.vn/wp-content/uploads/2022/06/theo-duoi-nganh-tri-tue-nhan-tao.jpg"
+                  className="w-full h-72 object-cover mb-4 rounded-lg"
                   alt="Image"
                 />
-                <div>THÔNG TIN MỚI VỀ CHUYÊN NGÀNH AI CỦA ĐH FPT</div>
+                <div className="font-bold">
+                  THÔNG TIN MỚI VỀ CHUYÊN NGÀNH AI CỦA ĐH FPT
+                </div>
               </div>
               <div className="rotate-left flex flex-col w-[30%] items-center justify-center overflow-hidden rounded-3xl -mr-10">
                 <img
-                  src={images[1]}
-                  className="w-full h-72 object-cover mb-4"
+                  src="https://www.vista.gov.vn/vn-uploads/news/2023/11-2023/29-11-2023/7.jpg"
+                  className="w-full h-72 object-cover mb-4 rounded-lg"
                   alt="Image"
                 />
-                <div>NGÀNH BÁN DẪN TẠI ĐH FPT</div>
+                <div className="font-bold">NGÀNH BÁN DẪN TẠI ĐH FPT</div>
               </div>
               <div className="rotate-right flex flex-col w-[30%] items-center justify-center overflow-hidden rounded-3xl -mr-10 animate-pulse">
                 <img
-                  src={images[2]}
-                  className="w-full h-72 object-cover mb-4"
+                  src="https://danang12-school.fpt.edu.vn/wp-content/uploads/2022/11/About_VN_20210914.webp"
+                  className="w-full h-72 object-cover mb-4 rounded-lg"
                   alt="Image"
                 />
-                <div>ĐH FPT KHÁT VỌNG ĐỔI THAY</div>
+                <div className="font-bold">ĐH FPT KHÁT VỌNG ĐỔI THAY</div>
               </div>
             </div>
           </div>
           {/* 3. component có trong https://wordpress.com */}
           <div className="mt-32">
-            <div className="text-center font-bold text-4xl">
+            <div
+              className="text-center font-bold text-4xl"
+              data-aos="fade-down"
+              data-aos-delay="100"
+              data-aos-offset="400"
+            >
               NỘI DUNG CÓ NGUỒN TIN RÕ RÀNG UY TÍN
             </div>
 
-            <Marquee
-              autoFill
-              pauseOnHover
-              className="h-64 rounded-lg bg-white mt-10"
-            >
-              {itemForLoop.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative flex items-center justify-center mr-10"
-                >
-                  <div className="relative group w-96 h-60 rounded-lg overflow-hidden">
-                    <img
-                      className="w-full h-full object-cover"
-                      src={item.img}
-                      alt={`item-${index}`}
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
-                      <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-primary">
-                        {item.content}
-                      </button>
+            <div data-aos="fade-up" data-aos-delay="100" data-aos-offset="400">
+              <Marquee
+                autoFill
+                pauseOnHover
+                className="h-64 rounded-lg bg-white mt-10"
+              >
+                {itemForLoop.map((item, index) => (
+                  <div
+                    key={index}
+                    className="relative flex items-center justify-center mr-10"
+                  >
+                    <div className="relative group w-96 h-60 rounded-lg overflow-hidden">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={item.img}
+                        alt={`item-${index}`}
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
+                        <button className="bg-black text-white py-2 px-4 hover:bg-primary">
+                          {item.content}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Marquee>
-            <Marquee
-              autoFill
-              pauseOnHover
-              direction="right"
-              className="h-64 rounded-lg bg-white mt-6"
-            >
-              {itemForLoop.map((item, index) => (
-                <div
-                  key={index}
-                  className="relative flex items-center justify-center mr-10"
-                >
-                  <div className="relative group w-96 h-60 rounded-lg overflow-hidden">
-                    <img
-                      className="w-full h-full object-cover"
-                      src={item.img}
-                      alt={`item-${index}`}
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
-                      <button className="bg-black text-white py-2 px-4 rounded-lg hover:bg-primary">
-                        {item.content}
-                      </button>
+                ))}
+              </Marquee>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="100" data-aos-offset="400">
+              <Marquee
+                autoFill
+                pauseOnHover
+                direction="right"
+                className="h-64 rounded-lg bg-white mt-6"
+              >
+                {itemForLoop.map((item, index) => (
+                  <div
+                    key={index}
+                    className="relative flex items-center justify-center mr-10"
+                  >
+                    <div className="relative group w-96 h-60 rounded-lg overflow-hidden">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={item.img}
+                        alt={`item-${index}`}
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
+                        <button className="bg-black text-white py-2 px-4 hover:bg-primary">
+                          {item.content}
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Marquee>
+                ))}
+              </Marquee>
+            </div>
           </div>
-          {/* 4. Một số bài viết phổ biến về AI */}
           <div className="mt-28 bg-primary py-16 ">
-            <div className="text-center font-bold text-4xl text-white">
+            <div
+              className="text-center font-bold text-4xl text-white"
+              data-aos="fade-down"
+              data-aos-offset="400"
+            >
               MỘT SỐ BÀI VIẾT{" "}
               <span className="text-black text-outline-white text-6xl">
                 VỀ AI
@@ -284,7 +300,7 @@ export const HomePage = () => {
             <div
               className="mt-6 text-3xl text-center font-semibold"
               data-aos="fade-right"
-              data-aos-offset="200"
+              data-aos-offset="400"
             >
               Chất lượng giảng dạy về AI đang được nâng cao trong khuôn khổ ĐH
               FPT
@@ -320,7 +336,7 @@ export const HomePage = () => {
             <div
               className=" my-10 font-bold text-center"
               data-aos="fade-down"
-              data-aos-offset="200"
+              data-aos-offset="400"
             >
               <span className="font-extrabold text-4xl text-primary">
                 100,000+
@@ -371,45 +387,52 @@ export const HomePage = () => {
                   data-aos-delay="700"
                   data-aos-offset="400"
                 >
-                  Xin chào chúng tôi là Ổ Kiến Lửa
+                  Xin chào chúng tôi là FuHub
                 </h1>
-                <div className="flex flex-col gap-y-4 pt-32">
+                <div
+                  className="flex flex-col gap-y-4 pt-32"
+                  data-aos="fade-left"
+                  data-aos-delay="100"
+                  data-aos-offset="400"
+                >
                   <h2 className="text-xl text-start font-secondary font-medium text-four ">
                     Luôn sẵn sàng hỗ trợ khách hàng
                   </h2>
                   <span className="text-lg">
-                    Tại Antidee, chúng tôi hiểu rằng cuộc sống bận rộn và công
-                    việc hàng ngày có thể khiến bạn không có đủ thời gian và
-                    năng lượng để chăm sóc ngôi nhà của mình. Chính vì vậy,
-                    chúng tôi tự hào mang đến dịch vụ dọn dẹp nhà chuyên nghiệp
-                    và tận tâm nhất. Đội ngũ nhân viên của chúng tôi đều được
-                    đào tạo kỹ lưỡng, có lý lịch rõ ràng và luôn cam kết mang
-                    lại không gian sống sạch sẽ, thoáng mát cho bạn và gia đình.
-                    Dù bạn cần dọn dẹp nhà cửa hàng tuần, vệ sinh tổng thể hay
-                    chỉ là một số công việc nhỏ lẻ, chúng tôi luôn sẵn sàng hỗ
-                    trợ bạn một cách nhanh chóng và hiệu quả nhất.
+                    FU Hub là đội ngũ admin tạo ra hệ thống blog và diễn đàn tại
+                    Đại học FPT, nơi mà học sinh và sinh viên có thể tự do thảo
+                    luận, chia sẻ và tìm hiểu về các ngành học đa dạng của
+                    trường cũng như những tin tức mới nhất về cuộc sống và học
+                    tập tại Đại học FPT. Chúng tôi cam kết cung cấp một nền tảng
+                    đổi mới và năng động, thúc đẩy sự giao tiếp và sáng tạo
+                    trong cộng đồng sinh viên, đồng thời đóng góp vào việc xây
+                    dựng một môi trường học tập hòa nhập và phát triển.
                   </span>
                 </div>
               </div>
             </div>
             <div className="relative px-60 mt-16 flex">
               <div className=" flex flex-col justify-center w-1/2">
-                <div className="flex flex-col gap-y-4 justify-center">
+                <div
+                  className="flex flex-col gap-y-4 justify-center"
+                  data-aos="fade-right"
+                  data-aos-delay="100"
+                  data-aos-offset="400"
+                >
                   <h2 className="text-xl font-secondary font-medium">
                     Sự hài lòng của khách hàng là niềm vinh hạnh của chúng tôi
                   </h2>
                   <span className="text-lg ">
-                    Tại đây, chúng tôi không chỉ đơn thuần là mang lại sự sạch
-                    sẽ cho ngôi nhà của bạn, mà còn tạo ra một trải nghiệm dịch
-                    vụ hoàn hảo từ đầu đến cuối. Trang web của chúng tôi được
-                    thiết kế thân thiện và dễ sử dụng, giúp bạn dễ dàng đặt
-                    lịch, quản lý các yêu cầu dịch vụ và theo dõi tiến độ công
-                    việc chỉ trong vài bước đơn giản. Với sự đa dạng trong các
-                    gói dịch vụ, từ dọn dẹp thường xuyên đến vệ sinh công
-                    nghiệp, chúng tôi luôn sẵn sàng đáp ứng mọi nhu cầu của bạn.
-                    Hãy để chúng tôi trở thành người bạn đồng hành tin cậy trong
-                    việc chăm sóc tổ ấm của bạn, mang lại cho bạn nhiều thời
-                    gian hơn để tận hưởng cuộc sống.
+                    Chào mừng bạn đến với trang web của chúng tôi! Tại đây,
+                    chúng tôi cam kết mang đến cho bạn trải nghiệm người dùng
+                    tuyệt vời nhất. Với giao diện thân thiện, dễ sử dụng và tốc
+                    độ tải trang nhanh chóng, bạn sẽ dễ dàng tìm thấy thông tin
+                    mình cần chỉ trong vài cú click. Hãy khám phá các tính năng
+                    ưu việt của chúng tôi và tận hưởng một hành trình trực tuyến
+                    mượt mà và đầy thú vị. Chúng tôi cam kết cung cấp một nền
+                    tảng đổi mới và năng động, thúc đẩy sự giao tiếp và sáng tạo
+                    trong cộng đồng sinh viên, đồng thời đóng góp vào việc xây
+                    dựng một môi trường học tập hòa nhập và phát triển.
                   </span>
 
                   <div className="text-xl font-bold hover:text-primary animate-bounce cursor-pointer">
@@ -438,15 +461,19 @@ export const HomePage = () => {
       )}
       {/* Nơi làm việc */}
       <div className="flex items-center justify-around">
-        <div>
+        <div data-aos="fade-right" data-aos-delay="100" data-aos-offset="400">
           <div class="min-h-screen bg-gray-800 py-6 flex flex-col justify-center sm:py-12">
-            <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+            <div
+              class="relative py-3 sm:max-w-xl sm:mx-auto"
+              data-aos="fade-right"
+              // data-aos-delay="100"
+              data-aos-offset="400"
+            >
               <div class="absolute inset-0 bg-gradient-to-r from-primary to-light_primary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"></div>
               <div class="text-white relative bg-primary shadow-lg rounded-3xl p-20">
                 <div class="text-center pb-6">
                   <h1 class="text-3xl font-bold text-black">
-                    Đây là{" "}
-                    <span className="text-4xl text-white">địa điểm</span>{" "}
+                    Đây là <span className="text-4xl text-white">địa điểm</span>{" "}
                     chúng tôi làm việc!
                   </h1>
 
@@ -463,8 +490,13 @@ export const HomePage = () => {
             />
           </div>
         </div>
-        <div className="">
-          <img src="https://vietnam.vnanet.vn//Styles/info/images/map.png" />
+        <div>
+          <img
+            src="https://vietnam.vnanet.vn//Styles/info/images/map.png"
+            data-aos="fade-right"
+            // data-aos-delay="100"
+            data-aos-offset="400"
+          />
           <div className="absolute -mt-[300px] ml-[184px] group">
             {/* <GoDot className="text-green size-12 animate-ping cursor-pointer" /> */}
             <IoLocationSharp class="text-info size-12 animate-bounce cursor-pointer" />
