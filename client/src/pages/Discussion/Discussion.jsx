@@ -18,6 +18,7 @@ export const Discussion = () => {
     const toggleTheme = () => {
         setIsDarkMode(!isDarkMode);
     };
+
     return (
         <div className={`discussion ${isDarkMode ? 'dark' : 'light'}`}>
             <button
@@ -26,19 +27,19 @@ export const Discussion = () => {
             >
                 Toggle Dark Mode
             </button>
-            <div className="grid grid-cols-[1fr_2fr_1fr] gap-4">
-                <div className="discussion p-4">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-4">
+                <div className="p-4">
                     <div className={`bg-white ${isDarkMode ? 'bg-dark' : 'bg-light'} rounded-lg shadow-md p-4 space-y-2`}>
-                        <div className="flex items-center p-3 gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
+                        <div className="flex items-center p-3 rounded-md gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
                             <MdFiberNew className="text-red-500 bg-red-200 rounded-full w-7 h-7 p-1" />
                             <h3 className="text-base font-bold">Newest and Recent</h3>
                         </div>
-                        <div className="flex items-center p-3 gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
+                        <div className="flex items-center p-3 rounded-md gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
                             <BsPostcardHeartFill className="text-green-500 bg-green-200 rounded-full w-7 h-7 p-1" />
                             <h3 className="text-base font-bold">Popular of the day</h3>
                         </div>
-                        <div className="flex items-center p-3 gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
-                        <FaUser className="text-blue-500 bg-blue-200 rounded-full w-7 h-7 p-1" />
+                        <div className="flex items-center p-3 rounded-md gap-2 hover:bg-gray-200 transition duration-300 cursor-pointer">
+                            <FaUser className="text-blue-500 bg-blue-200 rounded-full w-7 h-7 p-1" />
                             <h3 className="text-base font-bold">Following</h3>
                         </div>
                     </div>
@@ -48,53 +49,52 @@ export const Discussion = () => {
                         <div>
                             <div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
                                 <GiArtificialIntelligence className="mr-2 text-blue-500 w-8 h-8" />
-                                <strong >Trí thông minh nhân tạo (AI)</strong>
+                                <strong>Trí thông minh nhân tạo (AI)</strong>
                             </div>
                             <div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
                                 <SiNordicsemiconductor className="mr-2 text-green-500 w-8 h-8" />
-                                <strong >Bán dẫn</strong>
+                                <strong>Bán dẫn</strong>
                             </div>
                             <div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
                                 <img src={logoFPT} className="w-8 h-8 mr-2" alt="FPT Logo" />
-                                <strong >Đại học FPT</strong>
+                                <strong>Đại học FPT</strong>
                             </div>
                             <div className="flex items-center mb-4 hover:bg-slate-300 p-2 rounded-lg">
                                 <CiCircleMore className="mr-2 w-8 h-8 text-purple-500" />
                                 <strong>More</strong>
                             </div>
-                            <button className="flex items-center w-full justify-center 
-                            text-sm text-white font-semibold rounded-md
-                             p-2 bg-orange-500 hover:bg-orange-600 transition duration-300">
+                            <button className="flex items-center w-full justify-center text-sm
+                             text-white font-semibold rounded-md p-2
+                              bg-orange-500 hover:bg-orange-600 transition duration-300">
                                 Đăng tin
                                 <FaPenSquare className="mt-1 ml-2" />
                             </button>
                         </div>
                     </div>
                 </div>
-                <div className="discussion p-4 ">
-                    <div className={`flex items-center ${isDarkMode ? 'bg-dark' : 'bg-light'} mb-4 p-4 rounded-lg shadow-lg`}>
-                        <img src="" alt="avatar" className=" border w-8 h-8 rounded-full mr-2" />
+                <div className="p-4">
+                    <div className={`flex flex-col sm:flex-row items-center ${isDarkMode ? 'bg-dark' : 'bg-light'} mb-4 p-4 rounded-lg shadow-lg`}>
+                        <img src="" alt="avatar" className="border w-8 h-8 rounded-full mr-2" />
                         <input
                             placeholder="Chia sẻ cảm nghĩ của bạn"
                             className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <button
                             type="submit"
-                            className="ml-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300"
+                            className="mt-2 sm:mt-0 sm:ml-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-300"
                         >
                             Đăng bài
                         </button>
                     </div>
                     <div className="border-t pt-4 mt-4">
-
-                        <div className={`relative flex border ${isDarkMode ? 'bg-dark' : 'bg-light'} rounded-lg shadow-lg p-4 mb-2`}>
-                            <img src={logoFPT} alt="mô tả post" className="w-40 h-40 mr-3 border object-cover rounded-lg mb-4" />
+                        <div className={`relative flex flex-col sm:flex-row border ${isDarkMode ? 'bg-dark' : 'bg-light'} rounded-lg shadow-lg p-4 mb-2`}>
+                            <img src={logoFPT} alt="mô tả post" className="w-full sm:w-40 h-40 mr-3 border object-cover rounded-lg mb-4 sm:mb-0" />
                             <FaRegHeart className="text-red-500 absolute top-0 right-0 m-2" />
-                            <div>
+                            <div className="flex-1">
                                 <div className="flex justify-between items-center mb-2">
                                     <strong className="text-base mr-2">Blockchain developer best practices on innovationchain</strong>
                                 </div>
-                                <div className="flex gap-2 text-sm text-gray-600 mb-4">
+                                <div className="flex flex-wrap gap-2 text-sm text-gray-600 mb-4">
                                     <span className="bg-gray-200 px-2 py-1 rounded">finance</span>
                                     <span className="bg-gray-200 px-2 py-1 rounded">bitcoin</span>
                                     <span className="bg-gray-200 px-2 py-1 rounded">crypto</span>
@@ -111,10 +111,9 @@ export const Discussion = () => {
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
-                <div className=" discussion p-4">
+                <div className="p-4">
                     <div className={`bg-white ${isDarkMode ? 'bg-dark' : 'bg-light'} p-4 mt-4 rounded-lg shadow-md`}>
                         <strong className="text-base font-bold block mb-4">Thảo luận hàng đầu</strong>
                         <div className="flex justify-between items-center p-2 rounded-lg mb-3 border">
@@ -133,12 +132,11 @@ export const Discussion = () => {
                             </div>
                             <BsThreeDots />
                         </div>
-                        
                     </div>
                     <div className={`bg-white ${isDarkMode ? 'bg-dark' : 'bg-light'} p-4 mt-4 rounded-lg shadow-md`}>
-                        <div className="flex gap-10">
+                        <div className="flex justify-between gap-10">
                             <strong className="text-base font-bold block mb-4">Lượt truy cập người dùng</strong>
-                            <p className="text-blue-500 font-semibold hover:text-blue-900">Tất cả</p>
+                            <p className="text-blue-500 font-semibold hover:text-blue-900 cursor-pointer">Tất cả</p>
                         </div>
                         <div className="flex items-center space-x-4 mb-4">
                             <img alt="avatar" src="" className="rounded-full border w-8 h-8" />
@@ -188,6 +186,6 @@ export const Discussion = () => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
