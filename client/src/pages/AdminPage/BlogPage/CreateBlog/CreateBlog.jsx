@@ -13,6 +13,8 @@ import {
     uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../../../../firebase';
+import Quill from 'quill';
+import 'quill/dist/quill.snow.css';
 
 export const CreateBlog = ({ setIsOpenCreateBlog, handleGetAllBlogs }) => {
     const [formData, setFormData] = useState({
@@ -31,6 +33,32 @@ export const CreateBlog = ({ setIsOpenCreateBlog, handleGetAllBlogs }) => {
         clearErrors,
     } = useForm();
     const dispatch = useDispatch();
+    const quillRef = useRef(null);
+    const quillInstanceRef = useRef(null); // Ref to store the quill instance
+
+    useEffect(() => {
+        if (!quillInstanceRef.current) { // Check if quillInstance is already created
+            quillInstanceRef.current = new Quill(quillRef.current, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        [{ 'align': [] }],
+                        [{ 'indent': '-1'}, { 'indent': '+1' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                    ]
+                },
+            });
+            quillInstanceRef.current.on('text-change', () => {
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    blogContent: quillInstanceRef.current.root.innerHTML,
+                }));
+            });
+        }
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,6 +71,7 @@ export const CreateBlog = ({ setIsOpenCreateBlog, handleGetAllBlogs }) => {
     const onSubmit = async (data) => {
         const trimmedData = {
             ...data,
+            blogContent: formData.blogContent,
         };
         try {
             const blogData = blogUrl !== '' ? { ...trimmedData, image: blogUrl } : { ...trimmedData, image: 'https://static8.depositphotos.com/1010338/959/i/450/depositphotos_9597931-stock-photo-team-gear-3d-isolated-characters.jpg' };
@@ -107,120 +136,115 @@ export const CreateBlog = ({ setIsOpenCreateBlog, handleGetAllBlogs }) => {
 
     return (
         <div className="popup active fixed inset-0 flex items-center justify-center z-50">
-        <div className="overlay fixed inset-0 bg-black opacity-50"></div>
-        <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="relative bg-white rounded-md shadow-lg p-6 w-11/12 max-w-xl mx-auto overflow-y-auto"
-            style={{ maxHeight: '90vh' }}
-        >
-            <AiOutlineClose
-                className="absolute text-lg hover:cursor-pointer text-gray-500 hover:text-gray-700"
-                style={{ top: '10px', right: '10px' }}
-                onClick={() => setIsOpenCreateBlog(false)}
-            />
-            <p className="text-center text-green font-bold text-2xl">
-                TẠO BLOG MỚI
-            </p>
-            <div className="form-group space-y-2">
-                <label className='font-bold'>Tiêu đề <span className="text-red-500"> * </span></label>
-                <input
-                    type="text"
-                    {...register('title', { required: 'Tiêu đề là bắt buộc' })}
-                    className="create-question-input w-full border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
-                    placeholder="Nhập tên của bài viết"
-                    required
+            <div className="overlay fixed inset-0 bg-black opacity-50"></div>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="relative bg-white rounded-md shadow-lg p-6 w-11/12 max-w-xl mx-auto overflow-y-auto"
+                style={{ maxHeight: '90vh' }}
+            >
+                <AiOutlineClose
+                    className="absolute text-lg hover:cursor-pointer text-gray-500 hover:text-gray-700"
+                    style={{ top: '10px', right: '10px' }}
+                    onClick={() => setIsOpenCreateBlog(false)}
                 />
-            </div>
-            <div className="form-group space-y-2">
-                <label className='font-bold'>Tên tác giả <span className="text-red-500"> * </span></label>
-                <input
-                    type="text"
-                    {...register('blogerName', { required: 'Tên tác giả là bắt buộc' })}
-                    className="create-question-input w-full border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
-                    placeholder="Nhập tên của tác giả"
-                    required
-                />
-            </div>
-            <div className="form-group space-y-2">
-                <label className="font-bold">Nội Dung <span className="text-red-500"> * </span></label>
-                <textarea
-                    {...register('blogContent', { required: 'Nội dung là bắt buộc' })}
-                    className="create-question-input w-full h-[300px] border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
-                    required
-                />
-            </div>
-            <div className="form-group space-y-2">
-                <label className="font-bold">Tham chiếu</label>
-                <input
-                    type="text"
-                    {...register('reference')}
-                    className="create-question-input w-full border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
-                />
-            </div>
-            <div className="form-group space-y-2">
-                <label className="font-bold">Ảnh</label>
-                <img
-                    src={blogUrl || 'https://static8.depositphotos.com/1010338/959/i/450/depositphotos_9597931-stock-photo-team-gear-3d-isolated-characters.jpg'}
-                    className="border rounded-lg mx-auto mb-2 w-28 h-28"
-                />
-                <span
-                    className="block rounded-md bg-blue text-white p-2 mx-auto w-fit text-center hover:cursor-pointer hover:bg-blue-700"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        fileRef.current.click();
-                    }}
-                >
-                    <span className='py-1 px-3 rounded-lg'>Chọn ảnh blog</span>
-                </span>
-                <input
-                    type="file"
-                    ref={fileRef}
-                    hidden
-                    onChange={(e) => {
-                        setFile(e.target.files[0]);
-                        setFileUploadError(''); // Reset error state on file change
-                    }}
-                />
-                <p className="text-sm text-center">
-                    {fileUploadError ? (
-                        <span className="text-red">
-                            {fileUploadError}
-                        </span>
-                    ) : filePerc > 0 && filePerc < 100 ? (
-                        <span className="text-gray">{`Đang tải lên ${filePerc}%`}</span>
-                    ) : filePerc === 100 ? (
-                        <span className="text-green">Tải ảnh lên thành công!</span>
-                    ) : (
-                        ''
-                    )}
+                <p className="text-center text-green font-bold text-2xl">
+                    TẠO BLOG MỚI
                 </p>
-            </div>
-            <div className="form-group space-y-2">
-                <label className="font-bold">Thể loại</label>
-                <select
-                    id="categories"
-                    {...register('categories', { required: 'Phân loại là bắt buộc' })}
-                    className="create-question-input w-full border border-gray rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
-                >
-                    <option value="">Select a category</option>
-                    <option value="FPT">FPT</option>
-                    <option value="Bán dẫn">Bán dẫn</option>
-                    <option value="Trí tuệ nhân tạo (AI)">Trí tuệ nhân tạo (AI)</option>
-                    <option value="Chuyển đổi số">Chuyển đổi số</option>
-                    <option value="Môi trường xanh">Môi trường xanh</option>
-                    <option value="Xe điện">Xe điện</option>
-                </select>
-            </div>
-            <div className="flex justify-center">
-                <button
-                    type="submit"
-                    className="bg-primary text-white text-center rounded-md px-4 py-2 font-medium hover:bg-blue-700"
-                >
-                    Tạo blog mới
-                </button>
-            </div>
-        </form>
-    </div>
-    
+                <div className="form-group space-y-2">
+                    <label className='font-bold'>Tiêu đề <span className="text-red-500"> * </span></label>
+                    <input
+                        type="text"
+                        {...register('title', { required: 'Tiêu đề là bắt buộc' })}
+                        className="create-question-input w-full border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
+                        placeholder="Nhập tên của bài viết"
+                        required
+                    />
+                </div>
+                <div className="form-group space-y-2">
+                    <label className='font-bold'>Tên tác giả <span className="text-red"> * </span></label>
+                    <input
+                        type="text"
+                        {...register('blogerName', { required: 'Tên tác giả là bắt buộc' })}
+                        className="create-question-input w-full border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
+                        placeholder="Nhập tên của tác giả"
+                        required
+                    />
+                </div>
+                <div className="form-group space-y-2">
+                    <label className="font-bold">Nội Dung <span className="text-red"> * </span></label>
+                    <div ref={quillRef} className="create-question-input w-full h-[300px] border border-gray rounded-md px-3 py-2 text-sm focus:ring focus:ring-blue"></div>
+                </div>
+                <div className="form-group space-y-2">
+                    <label className="font-bold">Tham chiếu</label>
+                    <input
+                        type="text"
+                        {...register('reference')}
+                        className="create-question-input w-full border border-gray-300 rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
+                    />
+                </div>
+                <div className="form-group space-y-2">
+                    <label className="font-bold">Ảnh</label>
+                    <img
+                        src={blogUrl || 'https://static8.depositphotos.com/1010338/959/i/450/depositphotos_9597931-stock-photo-team-gear-3d-isolated-characters.jpg'}
+                        className="border rounded-lg mx-auto mb-2 w-28 h-28"
+                    />
+                    <span
+                        className="block rounded-md bg-blue text-white p-2 mx-auto w-fit text-center hover:cursor-pointer hover:bg-blue-700"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            fileRef.current.click();
+                        }}
+                    >
+                        <span className='py-1 px-3 rounded-lg'>Chọn ảnh blog</span>
+                    </span>
+                    <input
+                        type="file"
+                        ref={fileRef}
+                        hidden
+                        onChange={(e) => {
+                            setFile(e.target.files[0]);
+                            setFileUploadError(''); // Reset error state on file change
+                        }}
+                    />
+                    <p className="text-sm text-center">
+                        {fileUploadError ? (
+                            <span className="text-red">
+                                {fileUploadError}
+                            </span>
+                        ) : filePerc > 0 && filePerc < 100 ? (
+                            <span className="text-gray">{`Đang tải lên ${filePerc}%`}</span>
+                        ) : filePerc === 100 ? (
+                            <span className="text-green">Tải ảnh lên thành công!</span>
+                        ) : (
+                            ''
+                        )}
+                    </p>
+                </div>
+                <div className="form-group space-y-2">
+                    <label className="font-bold">Thể loại</label>
+                    <select
+                        id="categories"
+                        {...register('categories', { required: 'Phân loại là bắt buộc' })}
+                        className="create-question-input w-full border border-gray rounded-md px-3 py-2 text-center text-sm focus:ring focus:ring-blue-300"
+                    >
+                        <option value="">Select a category</option>
+                        <option value="FPT">FPT</option>
+                        <option value="Bán dẫn">Bán dẫn</option>
+                        <option value="Trí tuệ nhân tạo (AI)">Trí tuệ nhân tạo (AI)</option>
+                        <option value="Chuyển đổi số">Chuyển đổi số</option>
+                        <option value="Môi trường xanh">Môi trường xanh</option>
+                        <option value="Xe điện">Xe điện</option>
+                    </select>
+                </div>
+                <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="bg-primary text-white text-center rounded-md px-4 py-2 font-medium hover:bg-blue-700"
+                    >
+                        Tạo blog mới
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 };
