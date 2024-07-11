@@ -1,11 +1,3 @@
-.rotate-left {
-    transform: rotate(10deg);
-}
-
-.rotate-right {
-    transform: rotate(-10deg);
-}
-
 .intro-animation {
     position: relative;
     width: 100%;
@@ -20,18 +12,18 @@
     top: 0;
     width: 50%;
     height: 100%;
-    background-color: #1f2937; /* Tailwind's bg-gray-800 color */
+    background-color: #fb7f0c; /* Tailwind's bg-gray-800 color */
     z-index: 10;
   }
   
   .intro-animation::before {
     left: 0;
-    animation: slideLeft 2s forwards;
+    animation: slideLeft 3s forwards;
   }
   
   .intro-animation::after {
     right: 0;
-    animation: slideRight 2s forwards;
+    animation: slideRight 3s forwards;
   }
   
   @keyframes slideLeft {

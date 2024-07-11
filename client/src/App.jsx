@@ -11,12 +11,13 @@ import {Blog} from './pages/Blog/Blog'
 
 
 import { BlogManagement } from './pages/AdminPage/BlogPage/BlogManagement';
+import "aos/dist/aos.css";
 const App = () => {
-	return (
-		<Router>
-			<AppContent/>
-		</Router>
-	);
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
 };
 
 const AppContent = () => {
