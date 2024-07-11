@@ -28,6 +28,27 @@ const createDiscussion = asyncHandler(async (req, res) => {
     })
   })
 
+  const getDiscussionById = asyncHandler(async (req, res) => {
+	try {
+		const discussion = await Discussion.findById(req.params.discussionId);
+		if (!discussion) {
+			return res.status(404).json({
+				success: false,
+				error: 'Discussion not found',
+			});
+		}
+		res.status(200).json({
+			success: true,
+			data: discussion,
+		});
+	} catch (error) {
+		res.status(500).json({
+			success: false,
+			error: error.message,
+		});
+	}
+});
+
   const updateDiscussion = asyncHandler(async(req,res)=>{
     try {
 		const findDiscussion = await Discussion.findById(req.params.discussionId);
@@ -82,6 +103,7 @@ const createDiscussion = asyncHandler(async (req, res) => {
 	createDiscussion,
     getAllDiscussion,
     updateDiscussion,
-    deleteDiscussion
+    deleteDiscussion,
+	getDiscussionById
     
 };
