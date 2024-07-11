@@ -22,13 +22,13 @@ export const getAllDiscussions = createAsyncThunk(
 	}
 );
 
-export const createTopic = createAsyncThunk(
-	'auth/createTopic',
+export const createDiscussion = createAsyncThunk(
+	'auth/createDiscussion',
 	async (discussionData, thunkAPI) => {
 		try {
-			const storedAccount = JSON.parse(localStorage.getItem('account'));
-			const token = storedAccount.data.token;
-			return await discussionService.updateTopic(account, token);
+			// const storedAccount = JSON.parse(localStorage.getItem('account'));
+			// const token = storedAccount.data.token;
+			return await discussionService.createDiscussion(discussionData);
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -42,13 +42,36 @@ export const createTopic = createAsyncThunk(
 	}
 );
 
-export const deleteTopic = createAsyncThunk(
-	'auth/deleteTopic',
-	async (discussionData, thunkAPI) => {
+export const deleteDiscussion = createAsyncThunk(
+	'auth/deleteDiscussion',
+	async (discussionId, thunkAPI) => {
 		try {
 			const storedAccount = JSON.parse(localStorage.getItem('account'));
 			const token = storedAccount.data.token;
-			return await discussionService.updateTopic(account, token);
+			return await discussionService.deleteDiscussion(discussionId, token);
+		} catch (error) {
+			const message =
+				(error.response &&
+					error.response.data &&
+					error.response.data.message) ||
+				error.message ||
+				error.toString();
+
+			return thunkAPI.rejectWithValue(message);
+		}
+	}
+);
+export const updateDiscussion = createAsyncThunk(
+	'auth/updateDiscussion',
+	async ({ discussionId, discussionData }, thunkAPI) => {
+		try {
+			const storedAccount = JSON.parse(localStorage.getItem('account'));
+			const token = storedAccount.data.token;
+			return await discussionService.updateDiscussion(
+				discussionId,
+				discussionData,
+				token
+			);
 		} catch (error) {
 			const message =
 				(error.response &&
@@ -82,7 +105,66 @@ export const authSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
-		builder;
+		builder
+			.addCase(getAllDiscussions.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(getAllDiscussions.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions = action.payload;
+			})
+			.addCase(getAllDiscussions.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+				state.discussions = [];
+			})
+			.addCase(createDiscussion.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(createDiscussion.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions.push(action.payload);
+			})
+			.addCase(createDiscussion.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(deleteDiscussion.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(deleteDiscussion.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions = state.discussions.filter(
+					(discussion) => String(discussion._id) !== String(action.payload._id)
+				);
+			})
+			.addCase(deleteDiscussion.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			})
+			.addCase(updateDiscussion.pending, (state) => {
+				state.isLoading = true;
+			})
+			.addCase(updateDiscussion.fulfilled, (state, action) => {
+				state.isLoading = false;
+				state.isSuccess = true;
+				state.discussions[
+					state.discussions.findIndex(
+						(discussion) => discussion._id == action.payload._id
+					)
+				] = action.payload;
+			})
+			.addCase(updateDiscussion.rejected, (state, action) => {
+				state.isLoading = false;
+				state.isError = true;
+				state.message = action.payload;
+			});
 	},
 });
 

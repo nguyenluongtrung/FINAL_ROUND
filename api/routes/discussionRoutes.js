@@ -10,12 +10,12 @@ const { protect } = require('../middleware/accountMiddleware');
 const router = express.Router();
 
 router.route('/').get(getAllDiscussions);
-router.route('/post').post(protect, createDiscussion);
+router.route('/').post(createDiscussion);
 
 router
-	.route('/post/:discussionId')
+	.route('/:discussionId')
 	.get(getDiscussionById)
-	.patch(protect, updateDiscussion)
-	.delete(protect, deleteDiscussion);
+	.patch(updateDiscussion)
+	.delete(deleteDiscussion);
 
 module.exports = router;

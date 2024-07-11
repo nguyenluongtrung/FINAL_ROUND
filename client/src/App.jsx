@@ -6,18 +6,16 @@ import {
 } from 'react-router-dom';
 import { Layout } from './layout/Layout';
 import { HomePage } from './pages/HomePage/HomePage';
-import { Discussion } from './pages/Discussion/Discussion';
-import {Blog} from './pages/Blog/Blog'
-
-
+import { Discussions } from './pages/Discussions/Discussions';
+import { Blog } from './pages/Blog/Blog';
 import { BlogManagement } from './pages/AdminPage/BlogPage/BlogManagement';
-import "aos/dist/aos.css";
+import 'aos/dist/aos.css';
 const App = () => {
-  return (
-    <Router>
-      <AppContent />
-    </Router>
-  );
+	return (
+		<Router>
+			<AppContent />
+		</Router>
+	);
 };
 
 const AppContent = () => {
@@ -30,21 +28,11 @@ const AppContent = () => {
 					<Route path="/" element={<Layout />}>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/home" element={<HomePage />} />
-						<Route path="/discussion" element={<Discussion/>}/>
-						<Route path="/blog" element={<Blog />}/>
-						<Route
-								path="/admin-blog" element={<BlogManagement />}
-							/>
+						<Route path="/discussions" element={<Discussions />} />
+						<Route path="/blogs" element={<Blog />} />
+						<Route path="/admin-blog" element={<BlogManagement />} />
 					</Route>
 				</Routes>
-				{/* {isAdminPage && (
-						<>
-							<Route
-								path="/admin-blog" element={<BlogManagement />}
-							/>
-							
-						</>
-					)} */}
 			</div>
 		</div>
 	);
