@@ -1,34 +1,33 @@
 const asyncHandler = require('express-async-handler');
 const Discussion = require('./../models/discussionModel');
 
-
 const createDiscussion = asyncHandler(async (req, res) => {
-    try {
-      const discussion = await Discussion.create(req.body);
-      res.status(201).json({
-        success: true,
-        data: { discussion },
-      });
-    } catch (error) {
-      res.status(400).json({
-        success: false,
-        error: error.message,
-      });
-    }
-  });
+	try {
+		const discussion = await Discussion.create(req.body);
+		res.status(201).json({
+			success: true,
+			data: { discussion },
+		});
+	} catch (error) {
+		res.status(400).json({
+			success: false,
+			error: error.message,
+		});
+	}
+});
 
-  const getAllDiscussion = asyncHandler(async(req,res)=>{
-    const discussion = await Discussion.find({});
+const getAllDiscussions = asyncHandler(async (req, res) => {
+	const discussions = await Discussion.find({});
 
-    res.status(200).json({
-        status:'success',
-        data:{
-            discussion
-        }
-    })
-  })
+	res.status(200).json({
+		status: 'success',
+		data: {
+			discussions,
+		},
+	});
+});
 
-  const getDiscussionById = asyncHandler(async (req, res) => {
+const getDiscussionById = asyncHandler(async (req, res) => {
 	try {
 		const discussion = await Discussion.findById(req.params.discussionId);
 		if (!discussion) {
@@ -49,8 +48,8 @@ const createDiscussion = asyncHandler(async (req, res) => {
 	}
 });
 
-  const updateDiscussion = asyncHandler(async(req,res)=>{
-    try {
+const updateDiscussion = asyncHandler(async (req, res) => {
+	try {
 		const findDiscussion = await Discussion.findById(req.params.discussionId);
 
 		if (!findDiscussion) {
@@ -75,11 +74,13 @@ const createDiscussion = asyncHandler(async (req, res) => {
 			error: error.message,
 		});
 	}
-  })
+});
 
-  const deleteDiscussion = asyncHandler(async(req,res)=>{
-    try {
-		const discussion = await Discussion.findByIdAndDelete(req.params.discussionId);
+const deleteDiscussion = asyncHandler(async (req, res) => {
+	try {
+		const discussion = await Discussion.findByIdAndDelete(
+			req.params.discussionId
+		);
 		if (!discussion) {
 			return res.status(404).json({
 				success: false,
@@ -98,12 +99,11 @@ const createDiscussion = asyncHandler(async (req, res) => {
 			error: error.message,
 		});
 	}
-  })
-  module.exports = {
+});
+module.exports = {
 	createDiscussion,
-    getAllDiscussion,
-    updateDiscussion,
-    deleteDiscussion,
-	getDiscussionById
-    
+	getAllDiscussions,
+	updateDiscussion,
+	deleteDiscussion,
+	getDiscussionById,
 };

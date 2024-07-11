@@ -19,7 +19,8 @@ app.use(express.json());
 const server = http.createServer(app);
 
 app.use('/finalround/api/accounts', require('./routes/accountRoutes'));
-app.use('/finalround/api/discussion', require('./routes/discussionRoutes'));
+app.use('/finalround/api/discussions', require('./routes/discussionRoutes'));
+app.use('/finalround/api/topics', require('./routes/topicRoutes'));
 
 app.use(express.static(path.join(__dir, '/client/dist')));
 
