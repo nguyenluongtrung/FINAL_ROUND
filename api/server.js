@@ -19,7 +19,7 @@ app.use(express.json());
 const server = http.createServer(app);
 
 app.use('/finalround/api/accounts', require('./routes/accountRoutes'));
-
+app.use('/finalround/api/blogs', require('./routes/blogRoutes'));
 app.use(express.static(path.join(__dir, '/client/dist')));
 
 app.get('*', (req, res) => {
