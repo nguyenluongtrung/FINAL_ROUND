@@ -129,7 +129,7 @@ export const Blog = () => {
 
             {currentBlogs.map((blog) => (
                 <div className="max-w-7xl mx-auto" key={blog.id}>
-                    <div className="flex items-start p-4 border border-gray-200 bg-white shadow-lg rounded-lg mb-4">
+                    <div className="flex items-start p-4 bg-white shadow-lg rounded-lg mb-4">
                         <img className="w-60 h-48 object-cover rounded-lg mr-4" src={blog.image} alt="Blog Image" />
                         <div className="flex flex-col justify-between">
                             <div>
