@@ -1,0 +1,45 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-message {
+    background-color: #FED7AA;
+    color: #1F2937;
+    text-align: right;
+    align-self: flex-end;
+    max-width: 80%;
+    padding: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  
+  .ai-message {
+    background-color: #F3F4F6;
+    color: #1F2937;
+    text-align: left;
+    align-self: flex-start;
+    max-width: 70%;
+    padding: 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  
+  .suggestion-button {
+    background-color: #D1D5DB;
+    color: #1F2937;
+    padding: 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .suggestion-button:hover {
+    background-color: #F97316;
+    color: #FFFFFF;
+  }
+  
