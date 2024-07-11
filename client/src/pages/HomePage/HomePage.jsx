@@ -121,7 +121,7 @@ export const HomePage = () => {
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-20"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 z-0"></div>
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-30">
               <h1 className="text-6xl font-bold">Sự kiện tưng bừng</h1>
               <p className="text-lg mt-4">Jambojee đổ bộ nhà F</p>
@@ -224,7 +224,7 @@ export const HomePage = () => {
             <Marquee
               autoFill
               pauseOnHover
-              className="h-64 rounded-lg bg-white mt-10"
+              className="h-64 rounded-lg bg-white mt-10 z-0"
             >
               {itemForLoop.map((item, index) => (
                 <div
@@ -250,7 +250,7 @@ export const HomePage = () => {
               autoFill
               pauseOnHover
               direction="right"
-              className="h-64 rounded-lg bg-white mt-6"
+              className="h-64 rounded-lg bg-white z-0 mt-6"
             >
               {itemForLoop.map((item, index) => (
                 <div
