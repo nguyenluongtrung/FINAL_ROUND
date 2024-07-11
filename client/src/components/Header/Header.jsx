@@ -32,18 +32,6 @@ export const Header = () => {
 		dispatch(reset());
 	};
 
-//   return (
-//     <div className={`mb-7 ${showHeader ? "header-visible" : "header-hidden"}`}>
-//       <div
-//         className={`navbar-container flex justify-between px-16 py-3 ${
-//           showHeader ? "header-background" : ""
-//         }`}
-//       >
-        
-//         <div className="flex">
-//           {account ? (
-
-
 	return (
 		<div className={`mb-7 ${showHeader ? 'header-visible' : 'header-hidden'}`}>
 			{isOpenLoginForm && <LoginPage setIsOpenLoginForm={setIsOpenLoginForm} />}
