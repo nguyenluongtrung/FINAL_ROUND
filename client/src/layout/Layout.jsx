@@ -7,7 +7,7 @@ export const Layout = () => {
 		<>
 			<Header />
 			<Outlet>
-				<Sidebar />
+				{/* <Sidebar /> */}
 			</Outlet>
 			<Footer />
 			<Toaster>
