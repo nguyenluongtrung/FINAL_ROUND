@@ -341,7 +341,7 @@ export const HomePage = () => {
               <span className="font-extrabold text-4xl text-primary">
                 100,000+
               </span>
-              <span className="text-4xl"> khách hàng sử dụng ứng dụng</span>
+              <span className="text-4xl"> người dùng tiếp cận ứng dụng</span>
             </div>
 
             <div className="flex justify-center grid-cols-2 lg:grid-cols-4 lg:gap-[30px]">
