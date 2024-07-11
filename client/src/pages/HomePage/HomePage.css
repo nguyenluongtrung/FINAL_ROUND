@@ -1,54 +1,59 @@
 .rotate-left {
-    transform: rotate(10deg);
+  transform: rotate(10deg);
 }
 
 .rotate-right {
-    transform: rotate(-10deg);
+  transform: rotate(-10deg);
 }
 
 .intro-animation {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .intro-animation::before,
-  .intro-animation::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background-color: #1f2937; /* Tailwind's bg-gray-800 color */
-    z-index: 10;
-  }
-  
-  .intro-animation::before {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.intro-animation::before,
+.intro-animation::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #1f2937; /* Tailwind's bg-gray-800 color */
+  z-index: 10;
+}
+
+.intro-animation::before {
+  left: 0;
+  animation: slideLeft 2s forwards;
+}
+
+.intro-animation::after {
+  right: 0;
+  animation: slideRight 2s forwards;
+}
+
+@keyframes slideLeft {
+  0% {
     left: 0;
-    animation: slideLeft 2s forwards;
   }
-  
-  .intro-animation::after {
+  100% {
+    left: -50%;
+  }
+}
+
+@keyframes slideRight {
+  0% {
     right: 0;
-    animation: slideRight 2s forwards;
   }
-  
-  @keyframes slideLeft {
-    0% {
-      left: 0;
-    }
-    100% {
-      left: -50%;
-    }
+  100% {
+    right: -50%;
   }
-  
-  @keyframes slideRight {
-    0% {
-      right: 0;
-    }
-    100% {
-      right: -50%;
-    }
-  }
-  
+}
+
+.text-outline-white {
+  /* Màu chữ chính */
+  text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px -1px 0 #fff, 1px 0 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}

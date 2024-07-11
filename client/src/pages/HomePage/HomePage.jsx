@@ -7,6 +7,11 @@ import AOS from "aos";
 import { FaUserCheck } from "react-icons/fa";
 import { MdPostAdd } from "react-icons/md";
 import { LuCheckCheck } from "react-icons/lu";
+import { PiArrowBendDownRightBold } from "react-icons/pi";
+import { GoDot } from "react-icons/go";
+import { CiLocationOn } from "react-icons/ci";
+import { BiHome } from "react-icons/bi";
+import { IoLocationSharp } from "react-icons/io5";
 
 export const HomePage = () => {
   const images = [
@@ -269,15 +274,26 @@ export const HomePage = () => {
             </Marquee>
           </div>
           {/* 4. Một số bài viết phổ biến về AI */}
-          <div className="mt-28">
-            <div className="text-center font-bold text-4xl">
-              MỘT SỐ BÀI VIẾT VỀ AI
+          <div className="mt-28 bg-primary py-16 ">
+            <div className="text-center font-bold text-4xl text-white">
+              MỘT SỐ BÀI VIẾT{" "}
+              <span className="text-black text-outline-white text-6xl">
+                VỀ AI
+              </span>
             </div>
-            <div className="flex gap-x-6 justify-center content-center my-10">
+            <div
+              className="mt-6 text-3xl text-center"
+              data-aos="fade-right"
+              data-aos-offset="200"
+            >
+              Chất lượng giảng dạy về AI đang được nâng cao trong khuôn khổ ĐH
+              FPT
+            </div>
+            <div className="flex gap-x-10 justify-center content-center my-10">
               {postAi.map((post, index) => {
                 return (
                   <div
-                    className="relative h-[500px] w-[20%] overflow-hidden rounded-lg cursor-pointer group"
+                    className="relative h-[400px] w-[20%] overflow-hidden rounded-lg cursor-pointer group"
                     data-aos={index % 2 === 0 ? "fade-down" : "fade-up"}
                     data-aos-offset="400"
                   >
@@ -289,7 +305,9 @@ export const HomePage = () => {
                     />
                     {/* Text Overlay */}
                     <div className="absolute inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                      <p className="text-black text-xl w-[80%]">{post.content}</p>
+                      <p className="text-black text-xl w-[80%]">
+                        {post.content}
+                      </p>
                     </div>
                   </div>
                 );
@@ -299,7 +317,7 @@ export const HomePage = () => {
           {/* 5. Một số phổ biến về bán dẫn */}
           {/* 7. Thành tựu FPT và trang web */}
 
-          <div className="pt-5 bg-light_gray">
+          <div className="pt-5 bg-white">
             <div
               className=" my-10 font-bold text-center"
               data-aos="fade-down"
@@ -332,9 +350,137 @@ export const HomePage = () => {
             </div>
           </div>
           {/* 6. Cam kết. chính xác.  */}
-          <div></div>
+          <div className="mt-16">
+            <div className="relative px-60 flex">
+              <div
+                className="w-1/2"
+                data-aos="fade-right"
+                data-aos-delay="100"
+                data-aos-offset="400"
+              >
+                <img
+                  className=""
+                  src="https://kientrucvietnam.org.vn/wp-content/uploads/2021/09/Alpha-Building-1.jpg"
+                  alt=""
+                />
+              </div>
+
+              <div className=" flex flex-col gap-y-4 bottom-1 w-1/2 mx-12">
+                <h1
+                  className="absolute text-[62px] text-primary leading-[62px] font-extrabold top-0 left-[600px] w-[600px] text-outline-white"
+                  data-aos="fade-up"
+                  data-aos-delay="700"
+                  data-aos-offset="400"
+                >
+                  Xin chào chúng tôi là Ổ Kiến Lửa
+                </h1>
+                <div className="flex flex-col gap-y-4 pt-32">
+                  <h2 className="text-xl text-start font-secondary font-medium text-four ">
+                    Luôn sẵn sàng hỗ trợ khách hàng
+                  </h2>
+                  <span className="text-lg">
+                    Tại Antidee, chúng tôi hiểu rằng cuộc sống bận rộn và công
+                    việc hàng ngày có thể khiến bạn không có đủ thời gian và
+                    năng lượng để chăm sóc ngôi nhà của mình. Chính vì vậy,
+                    chúng tôi tự hào mang đến dịch vụ dọn dẹp nhà chuyên nghiệp
+                    và tận tâm nhất. Đội ngũ nhân viên của chúng tôi đều được
+                    đào tạo kỹ lưỡng, có lý lịch rõ ràng và luôn cam kết mang
+                    lại không gian sống sạch sẽ, thoáng mát cho bạn và gia đình.
+                    Dù bạn cần dọn dẹp nhà cửa hàng tuần, vệ sinh tổng thể hay
+                    chỉ là một số công việc nhỏ lẻ, chúng tôi luôn sẵn sàng hỗ
+                    trợ bạn một cách nhanh chóng và hiệu quả nhất.
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="relative px-60 mt-16 flex">
+              <div className=" flex flex-col justify-center w-1/2">
+                <div className="flex flex-col gap-y-4 justify-center">
+                  <h2 className="text-xl font-secondary font-medium">
+                    Sự hài lòng của khách hàng là niềm vinh hạnh của chúng tôi
+                  </h2>
+                  <span className="text-lg ">
+                    Tại đây, chúng tôi không chỉ đơn thuần là mang lại sự sạch
+                    sẽ cho ngôi nhà của bạn, mà còn tạo ra một trải nghiệm dịch
+                    vụ hoàn hảo từ đầu đến cuối. Trang web của chúng tôi được
+                    thiết kế thân thiện và dễ sử dụng, giúp bạn dễ dàng đặt
+                    lịch, quản lý các yêu cầu dịch vụ và theo dõi tiến độ công
+                    việc chỉ trong vài bước đơn giản. Với sự đa dạng trong các
+                    gói dịch vụ, từ dọn dẹp thường xuyên đến vệ sinh công
+                    nghiệp, chúng tôi luôn sẵn sàng đáp ứng mọi nhu cầu của bạn.
+                    Hãy để chúng tôi trở thành người bạn đồng hành tin cậy trong
+                    việc chăm sóc tổ ấm của bạn, mang lại cho bạn nhiều thời
+                    gian hơn để tận hưởng cuộc sống.
+                  </span>
+
+                  <div className="text-xl font-bold hover:text-primary animate-bounce cursor-pointer">
+                    <PiArrowBendDownRightBold
+                      size={60}
+                      className="absolute -bottom-3 -left-20 animate-bounce"
+                    />
+                    Liên Hệ với chúng tôi nếu bạn cần hỗ trợ !!!
+                  </div>
+                </div>
+              </div>
+              <div
+                className="w-1/2 ml-10"
+                data-aos="fade-left"
+                data-aos-offset="400"
+              >
+                <img
+                  className=""
+                  src="https://photo.znews.vn/w660/Uploaded/wyhktpu/2021_05_21/23.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
         </div>
       )}
+      {/* Nơi làm việc */}
+      <div className="flex items-center justify-around">
+        <div>
+          <div class="min-h-screen bg-gray-800 py-6 flex flex-col justify-center sm:py-12">
+            <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+              <div class="absolute inset-0 bg-gradient-to-r from-primary to-light_primary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"></div>
+              <div class="text-white relative bg-primary shadow-lg rounded-3xl p-20">
+                <div class="text-center pb-6">
+                  <h1 class="text-3xl font-bold">
+                    Đây là <span className="text-4xl text-[#1656AD]">địa điểm</span> chúng tôi làm việc!
+                  </h1>
+
+                  <p class="text-gray-300">
+                    Fill up the form below to send us a message.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <img
+              className="absolute w-[300px] rotate-45 ml-[600px] p-5"
+              src="../../../public/img/fly.gif"
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="">
+          <img src="https://vietnam.vnanet.vn//Styles/info/images/map.png" />
+          <div className="absolute -mt-[300px] ml-[184px] group">
+            {/* <GoDot className="text-green size-12 animate-ping cursor-pointer" /> */}
+            <IoLocationSharp class="text-info size-12 animate-bounce cursor-pointer" />
+            <div className="absolute w-[200px] ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white text-black p-4 rounded shadow-lg ">
+              <div class="mb-4">
+                <strong class="flex items-center text-orange-500 space-x-2">
+                  <BiHome class="text-xl" />
+                  <span>Địa Chỉ</span>
+                </strong>
+                <p class="mt-1 text-gray-700">
+                  Khu đô thị FPT Đà Nẵng, P.Hòa Hải, Q.Ngũ Hành Sơn, TP Đà Nẵng
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -41,7 +41,7 @@ const IntroScreen = ({ onComplete }) => {
         numberOfPieces={300}
         recycle={false}
       />
-      <div className="intro-animation w-full h-full flex items-center justify-center p-60">
+      <div className="intro-animation w-full h-full flex items-center justify-center p-60 bg-white">
         <div className="font-bold text-primary text-7xl">{typeEffect}</div>
       </div>
     </div>
